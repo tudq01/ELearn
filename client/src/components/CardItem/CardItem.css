@@ -1,0 +1,38 @@
+div .card-item{
+    background-color: aquamarine;
+    display:flex;
+    flex-direction: column;
+    
+    width:20%;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    word-wrap: break-word;
+    padding:10px;
+}
+
+h1 {
+    font-style: bold;
+    margin-left: 0px;
+    font-size: 30px;
+}
+h3{
+    margin-left: 20px;
+}
+
+
+
+button{
+    border-radius: 10px; 
+    margin-bottom: 10px;
+    color:black;
+    background-color: white;
+    margin-right:25px;
+}
+
+
+@media only screen and (max-width: 900px) {
+    div .card-item{
+        width: 55%;
+    }
+}
