@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import "./Test.css"
 import { Link } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
-
+import Comments from "../../components/comments/Comments";
 import { getQuestions } from '../../actions/questionAction';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -46,11 +46,11 @@ function Test() {
 
 
       <div className="comment">
-         <h1> Comment</h1>
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Gui binh luan cua ban" aria-label="Gui binh luan cua ban" aria-describedby="basic-addon2" id="comment-bar"></input>
-            <span class="input-group-text" id="basic-addon2">Gui</span>
-        </div>
+        
+          <Comments
+            commentsUrl="http://localhost:3004/comments"
+            currentUserId="1"
+          />
       </div>
       </section>
     </>

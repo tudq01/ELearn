@@ -1,3 +1,4 @@
+
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const GithubStrategy = require("passport-github2").Strategy;
 const FacebookStrategy = require("passport-facebook").Strategy;
@@ -5,9 +6,9 @@ const passport = require("passport");
 const refresh = require('./controllers/refreshController')
 
 const Refresh = require("./models/refreshTokenModel")
- GOOGLE_CLIENT_ID = "1085038059617-hdhu0vpbgg8pl2knb524mj9a91j0ssm3.apps.googleusercontent.com"
+const GOOGLE_CLIENT_ID = "1085038059617-hdhu0vpbgg8pl2knb524mj9a91j0ssm3.apps.googleusercontent.com"
   
- GOOGLE_CLIENT_SECRET = "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"
+const GOOGLE_CLIENT_SECRET ="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"
 
 GITHUB_CLIENT_ID = "your id";
 GITHUB_CLIENT_SECRET = "your id";
@@ -24,8 +25,7 @@ passport.use(
     },
     //accessToken of google api
     async (accessToken, refreshToken, profile, done) => {
-      console.log("access:"+accessToken);
-      console.log(profile);
+    
       const existingUser = await User.findOne({ googleId: profile.id });
     
       if (existingUser) {
@@ -82,3 +82,4 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
+

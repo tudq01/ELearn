@@ -12,17 +12,12 @@ div .test-info h1 {
     margin-top: 10px;
 }
 
-div .comment{
-    margin-left:30px;
-    margin-bottom:200px;
-    border:solid;
+div.comment{
+    margin-left: 100px;
+    border: grid;
     border-radius: 5px;
-    width:80%;
 }
 
-div .comment h1{
-    margin-top:10px;
-}
 
 #button-start{
     border-radius: 10px;

@@ -9,7 +9,7 @@ div .container{
 
 div .question-context{
      display:flex;
-    align-items: center;
+   
     justify-content: center;
     flex-direction: column;
     margin-right:20px;
@@ -18,7 +18,7 @@ div .question-context{
     margin-bottom:30px;
     padding:10px;
     flex-wrap: wrap;
-    width:684px;
+  
 }
 
 div .question-bar{
@@ -62,6 +62,12 @@ div .part div #question-wrap{
     margin-right:15px;
     
 }
+div.question-context{
+    align-items: flex-start;
+    justify-content: center;
+    width: 98%;
+}
+
 }
 
 h2{
@@ -138,10 +144,7 @@ a.not {
 
 }
 
-form{
-    display: flex;
-    
-}
+
 
 div.time-bar{
     display: flex;

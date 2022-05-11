@@ -1,14 +1,14 @@
 import axios from 'axios';
 import * as types from '../constant/Question/questionConstant';
 
-export const getQuestions = (id) => async (dispatch) => {
+export const getQuestions = (testId) => async (dispatch) => {
 
     try {
 
         dispatch({ type: types.QUESTION_REQUEST });
 
 
-        const  {data} = await axios.get('http://localhost:5000/api/questions/'.concat(id.toString()));
+        const  {data} = await axios.get('http://localhost:5000/api/questions/'.concat(testId.toString()));
 
 
         dispatch({
