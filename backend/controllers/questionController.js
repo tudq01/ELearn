@@ -21,7 +21,7 @@ exports.getQuestion = asyncHandler(async (req, res) => {
       const element = test2.find(ele=>ele._id==req.params.testId)  // filter by id
     if (element) {
         res.json(element.result.sort((a, b) => (a.question > b.question) ? 1 : -1))
-        console.log(element);
+        console.log(element.questions);
 
     } else {
         res.status(404).json({ message: "Question not found" });
