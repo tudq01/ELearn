@@ -1,16 +1,17 @@
-import React,{useEffect,useState} from 'react'
-import axios from 'axios';
-import TokenService from '../../service/tokenService';
-import CardItem from '../../components/CardItem/CardItem';
-import { Suspense } from 'react';
-import Result from '../../components/Result/Result';
-import "./Profile.css"
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import TokenService from "../../service/tokenService";
+import CardItem from "../../components/CardItem/CardItem";
+import { Suspense } from "react";
+import Result from "../../components/Result/Result";
+import "./Profile.css";
 import Pagination from "../../components/Result/Pagination";
 import { useNavigate } from "react-router-dom";
 function Profile() {
-  const [resultItem, setItem] = useState([]);
   const history = useNavigate();
   const [loading, setLoading] = useState(false);
+
+  const [resultItem, setItem] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
 
@@ -44,10 +45,11 @@ function Profile() {
   const currentPosts = resultItem.slice(indexOfFirstPost, indexOfLastPost);
 
   // Change page
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber); //handleClick
   return (
     <>
       <section className="profile">
+     
         <div className="card">
           <Result resultItem={currentPosts} loading={loading} />
 
@@ -57,12 +59,10 @@ function Profile() {
             paginate={paginate}
             currentPage={currentPage}
           />
-
-     
         </div>
       </section>
     </>
   );
 }
 
-export default Profile
+export default Profile;
