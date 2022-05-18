@@ -23,12 +23,11 @@ function RegisterScreen() {
     useEffect(() => {
         if (userInfo) {
         console.log(userInfo)
-         setMessage("Register Successfully");
-         history("/login");
-    
+       
+        setMessage("Register Successfully");
+        }
     }, [userInfo]);
-    
-   
+      
 
     const submitHandler = (e) => {
         e.preventDefault();
