@@ -1,7 +1,35 @@
-
+import { useEffect,useState } from "react"
 import CardItem from "../../components/CardItem/CardItem"
 import "./Home.css"
-const Home = () => {
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+const Home = ({user}) => {
+    const [resultItem,setItem] = useState([])
+      const history = useNavigate();
+    useEffect(()=>{
+       
+       if(user)
+         axios
+           .get("http://localhost:5000/api/results/".concat(user._id), {
+             params: { limit: 4 }
+           })
+           .then(
+             (response) => {
+               setItem(response.data.result);
+               console.log(response);
+             },
+             (error) => {
+               console.log(error);
+             }
+           );  
+    },[user])
+
+
+    const handleClick =()=>{
+      console.log("hello");
+      history("/profile")
+      
+    }
     return (
 
         /*
@@ -20,11 +48,21 @@ const Home = () => {
                     <h1 className='info'>Kết quả luyện thi mới nhất</h1>
                     <p className='info'>Bạn chưa đăng ký khóa học nào</p>
                     <div className='card'>
-                        <CardItem date='23/12/2001' time='1:22:10' result='32/100' score='486' />
-                        <CardItem date='23/12/2001' time='22:10' result='32/100' score='486' />
-                        <CardItem date='23/12/2001' time='22:10' result='32/100' score='486' />
-                        <CardItem date='23/12/2001' time='22:10' result='32/100' score='486' />
+                       
+                        {resultItem && resultItem.map((item) =>
+                            <>
+                              <CardItem
+                                date={item.finishDate}
+                                time={item.time}
+                                result={item.correct}
+                                score={item.score}
+                                name ={item.testResult[0].name+" Test "+item.testResult[0].test}
+                                id= {item._id}
+                              />
+                            </>
+                        )}
                     </div>
+                    <a id ="detail" onClick={handleClick}>Xem chi tiet>>></a>
                 </div>
             </section>
             <section className='course'>

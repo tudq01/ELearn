@@ -1,5 +1,8 @@
 .comments {
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
 
 .comments-title {
@@ -9,6 +12,8 @@
 
 .comments-container {
   margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .comment-form-title {
@@ -48,6 +53,8 @@
 .comment {
   display: flex;
   margin-bottom: 28px;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
 
 .comment-image-container {
@@ -60,6 +67,9 @@
 
 .comment-right-part {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 
 .comment-content {

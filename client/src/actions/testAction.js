@@ -52,6 +52,27 @@ export const listIELTSTests = () => async (dispatch) => {
     }
 
 }
+
+export const getAllTest = () => async (dispatch) => {
+  try {
+    dispatch({ type: types.TEST_REQUEST });
+
+    const { data } = await api.get("/test/");
+
+    dispatch({
+      type: types.TEST_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: types.TEST_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 /*
 export const listTests =  () =>async (dispatch)=>{
     

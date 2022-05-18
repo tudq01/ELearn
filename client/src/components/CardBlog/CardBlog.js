@@ -11,7 +11,7 @@ function CardBlog(props) {
   return (
     <>
       <div className="blog-item">
-        <h1>{props.name}  TEST {props.testNumber}</h1>
+        <h1>{props.name}  TEST  {props.test}</h1>
         <span>{props.time} phut  </span> <br></br>
         <span>{props.part} phan thi |  {props.numberQuestion} cau hoi  </span>
         <Link to=

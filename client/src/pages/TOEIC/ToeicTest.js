@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./Toeic.css";
-import { useLocation } from "react-router-dom";
+import { useLocation,Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -12,13 +12,15 @@ function ToeicTest() {
 
   /* navigate things */
   const history = useNavigate();
-  const questionList = useSelector((state) => state.questionList);
-  const { questions, loadding, error } = questionList;
+  
   //  time and minute countdown
   const [seconds, setSecond] = useState(0);
   const [minutes, setMinute] = useState(state.time);
+  
   const keyAnswer = useRef([]);
-
+  useEffect(()=>{
+     console.log(state)
+  },[])
   var list1,
     list2,
     list3,
@@ -33,7 +35,9 @@ function ToeicTest() {
   list5 = takeSpan(101, 130);
   list6 = takeSpan(131, 146);
   list7 = takeSpan(147, 200);
+  
 
+    
   // update time and minute
   useEffect(() => {
     const time = setTimeout(() => {
@@ -51,19 +55,20 @@ function ToeicTest() {
 
   // get answer key
   useEffect(() => {
-
-    for (let i = 0; i < questions.length; i++) {
-      if (questions[i].types === "normal") {
-        keyAnswer.current.push(questions[i].answer);
-      } else {
-        for (let j = 0; j < questions[i].questions.length; j++) {
-          keyAnswer.current.push(questions[i].questions[j].answer);
+    for (let i = 0; i < state.questions.length; i++) { 
+      const part = state.questions[i]; // this an array
+      part.forEach((element) => {
+        if (element.types === "normal") {
+          keyAnswer.current.push(element.answer);
+        } else {
+          const ans = element.questions;
+          ans.forEach((ele) => {
+            keyAnswer.current.push(ele.answer);
+          });
         }
-      }
+      });
     }
-
-    console.log(keyAnswer.current);
-  }, [questions])
+  }, [])
 
   // update ui in question answer box
   useEffect(() => {
@@ -80,7 +85,7 @@ function ToeicTest() {
     history("/");
   };
 
-  const handleSubmit = () => {
+  const handleSubmit =  () => {
     const userChoice = [];
     for (let i = 1; i <= 200; i++) {
       var s = document.querySelector(
@@ -90,48 +95,43 @@ function ToeicTest() {
         userChoice.push(s.value[0]);
       } else userChoice.push("");
     }
-    // need to submit [answer,userId,time,testId]
-    /*
-    console.log(userChoice);
-    console.log(keyAnswer.current);
-    // array number of correct answer
-    console.log(questions);
-    console.log("Key:"+key)
-    //type string
-    console.log(minutes + ":" + seconds)
-    // test id
-    console.log(state._id)   */
+ 
+         
      const key = getKeyArray(userChoice, keyAnswer.current);
     axios
       .post(
         "http://localhost:5000/api/results/" +
-          state._id +
-          "/" +
-          TokenService.getuserInfo()._id,
-        {
+          state._id 
+          ,
+        { 
+          user:TokenService.getuserInfo()._id,
           answer: userChoice,
-          time: minutes + ":" + seconds,
+          time: getFinishTime(minutes,seconds,state.time),
           correct: key
         }
       )
       .then(
         (response) => {
           console.log(response);
+          history("/result", { state: { resultId:response.data.result._id} });   //pass resultId to result page
         },
         (error) => {
           console.log(error);
         }
-      );
-    history("/");
+      );  
+
+      const time = getFinishTime(minutes,seconds,state.time)
+      console.log(time);
+     
   };
 
-
+ 
 
   return (
     <section id="toeic-test">
       <div className="time-bar">
         <h1>
-          {state.name} Test {state.testNumber}
+          {state.name} Test {state.test}
         </h1>
         <h3>Bo de thi: {state.name}</h3>
         <button onClick={handleExit}>Thoat</button>
@@ -146,95 +146,96 @@ function ToeicTest() {
             />
             Your browser does not support the audio element.
           </audio>
+          {state.questions.map((item) =>
+            item.map((ques) => (
+              <>
+                {ques.types === "group" ? (
+                  <>
+                    <div id="question-wrapper">
+                      <p>{ques.content}</p>
+                      <p>{ques.question<100 ? <p></p>: <img src={ques.upload} />}
+                       
+                      </p>
 
-          {questions.map((ques) => (
-            <>
-              {ques.types === "group" ? (
-                <>
-                  <div id="question-wrapper">
-                    <p>{ques.content}</p>
-                    <p>
-                      <img src={ques.upload} />
-                    </p>
+                      {ques.questions.map((q) => (
+                        <>
+                          <p>
+                            <span id="light">{q.question}</span>{" "}
+                            {q.content && <em>{q.content}</em>}
+                            <p> {q.answer}</p>
+                          </p>
 
-                    {ques.questions.map((q) => (
-                      <>
-                        <p>
-                          <span id="light">{q.question}</span>{" "}
-                          {q.content && <em>{q.content}</em>}
-                          <p> {q.answer}</p>
-                        </p>
-
-                        {q.option.map((op) => (
+                          {q.option.map((op) => (
+                            <>
+                              <input
+                                type="radio"
+                                id={op.concat(ques.upload).concat(q.question)}
+                                value={op} //option
+                                name={q.question}
+                                onClick={(e) => {
+                                  setValue(e.target.name);
+                                }}
+                              />
+                              <span>
+                                <label
+                                  htmlFor={op
+                                    .concat(ques.upload)
+                                    .concat(q.question)}
+                                >
+                                  {" "}
+                                  {op}{" "}
+                                </label>
+                              </span>
+                              <br></br>
+                            </>
+                          ))}
+                        </>
+                      ))}
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div id="question-wrapper">
+                      {ques.upload && <img src={ques.upload} />}
+                      <br></br>
+                      <span id="light">{ques.question}</span>{" "}
+                      <p> {ques.answer}</p>
+                      <em>{ques.content}</em>
+                      <br></br>
+                      <p>
+                        {Array.from(ques.options).map((opt) => (
                           <>
                             <input
+                              className="selection"
                               type="radio"
-                              id={op.concat(ques.upload).concat(q.question)}
-                              value={op} //option
-                              name={q.question}
+                              id={opt.concat(ques.upload).concat(ques.question)}
+                              //option
+                              name={ques.question}
+                              value={opt}
                               onClick={(e) => {
                                 setValue(e.target.name);
                               }}
                             />
                             <span>
                               <label
-                                htmlFor={op
+                                htmlFor={opt
                                   .concat(ques.upload)
-                                  .concat(q.question)}
+                                  .concat(ques.question)}
                               >
                                 {" "}
-                                {op}{" "}
+                                {opt}{" "}
                               </label>
                             </span>
                             <br></br>
                           </>
                         ))}
-                      </>
-                    ))}
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div id="question-wrapper">
-                    {ques.upload && <img src={ques.upload} />}
-                    <br></br>
-                    <span id="light">{ques.question}</span>{" "}
-                    <p> {ques.answer}</p>
-                    <em>{ques.content}</em>
-                    <br></br>
-                    <p>
-                      {Array.from(ques.options).map((opt) => (
-                        <>
-                          <input
-                            className="selection"
-                            type="radio"
-                            id={opt.concat(ques.upload).concat(ques.question)}
-                            //option
-                            name={ques.question}
-                            value={opt}
-                            onClick={(e) => {
-                              setValue(e.target.name);
-                            }}
-                          />
-                          <span>
-                            <label
-                              htmlFor={opt
-                                .concat(ques.upload)
-                                .concat(ques.question)}
-                            >
-                              {" "}
-                              {opt}{" "}
-                            </label>
-                          </span>
-                          <br></br>
-                        </>
-                      ))}
-                    </p>
-                  </div>
-                </>
-              )}
-            </>
-          ))}
+                      </p>
+                    </div>
+                  </>
+                )}
+              </>
+            ))
+          )}
         </div>
 
         <div className="question-bar">
@@ -272,7 +273,9 @@ function ToeicTest() {
               <h2>Part 7</h2>
               <div id="question-wrap">{list7}</div>
             </div>
+          
           </div>
+
           <button id="turn-in" type="submit" onClick={handleSubmit}>
             Nop bai{" "}
           </button>
@@ -289,7 +292,7 @@ function takeSpan(i, j) {
 
     const id = "1".concat(s);
     list.push(
-      <a className="not" id={id}>
+      <a className="not" id={id}  >
         {s}
       </a>
     );
@@ -303,11 +306,51 @@ function getKeyArray(userChoice, answerKey) {
   for (let i = 0; i < answerKey.length; i++) {
     if (answerKey[i] === userChoice[i]) {
       correct.push(1);
+    } else if(userChoice[i]===""){
+      correct.push(-1);
     } else correct.push(0);
   }
   return correct;
 }
 
+function getFinishTime(minutes,seconds,testTime){
+   if(seconds===0){
+     return (testTime-minutes)+":00"
+   }else{
+     return (testTime-1-minutes)+":"+(60-seconds)
+   }
+}
 
 export default ToeicTest;
 
+/* 
+
+     var lists =[];
+
+       useEffect(() => {
+         state.parts.forEach((value, index) => {
+           if (index === 0) {
+             lists[index] = takeSpan(1, value.numberQuestion);
+           } else
+             lists[index] = takeSpan(
+               state.parts[index - 1].numberQuestion,
+               state.parts[index - 1].numberQuestion + value.numberQuestion
+             );
+         });
+
+         console.log(list1);
+         console.log(lists[0]);
+        
+       }, []);
+
+
+ 
+  {state.parts.map((part, index) => (
+              <>
+                <div className="part">
+                  <h2>Part {part.part}</h2>
+                  <div id="question-wrap"></div>
+                </div>
+              </>
+            ))}
+                         */

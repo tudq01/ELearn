@@ -1,7 +1,7 @@
 import React from 'react'
 import "./SearchBar.css"
 import { useEffect, useState } from 'react';
-import { listTests, listIELTSTests } from '../../actions/testAction';
+import { listTests, listIELTSTests, getAllTest } from '../../actions/testAction';
 import { useDispatch, useSelector } from 'react-redux';
 
 
@@ -10,25 +10,31 @@ function SearchBar(props) {
     const dispatch = useDispatch();
     const testList = useSelector(state => state.testList);
     const { tests, loadding, error } = testList;  // testsHave testList
+    const [click, setClick] = useState(false);
 
     // filter test by name get only distinct for buttone
     const getToeicTest = () => {
+        setClick(false);
         dispatch(listTests());
         console.log(tests);
     }
 
     const getIeltsTest = () => {
+        setClick(false);
         dispatch(listIELTSTests());
         console.log(tests);
     }
 
+
+
     useEffect(() => {
         props.setTest(tests);
-
-        let t = tests.filter((value, index, self) => self.findIndex((m) => m.tag === value.tag) === index)
-        let result=t.map(a=>a.tag)
-        setTestYear(result)
-    }, [tests]);
+        if (!click) {
+            let t = tests.filter((value, index, self) => self.findIndex((m) => m.tag === value.tag) === index)
+            let result = t.map(a => a.tag)
+            setTestYear(result)
+        }
+    }, [tests, props,click]);
 
 
     const handleTestName = (e) => {
@@ -37,15 +43,18 @@ function SearchBar(props) {
                 return z.tag === e.target.value;
             })
         });
-       
+
     }
 
     const handleGetAll = () => {
+        dispatch(getAllTest());
+        console.log(tests);
+        setClick(true);
         setTestYear([])
     }
 
 
-  
+
 
     return (
         <div className="search">
