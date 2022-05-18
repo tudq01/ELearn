@@ -12,6 +12,7 @@ const testRoute = require("./routes/testRoutes")
 const userRoute = require('./routes/userRoutes');
 const resultRoute = require('./routes/resultRoutes');
 const questionRoute = require('./routes/questionRoutes');
+const commentRoute = require("./routes/commentRoutes");
 dotenv.config();
 connectDB();
 const app = express();
@@ -57,7 +58,7 @@ app.use("/auth", authRoute);
 app.use('/api/test', testRoute);
 app.use('/api/users', userRoute);
 app.use('/api/questions',questionRoute)
-
+app.use('api/comments',commentRoute)
 app.use('/api/results', resultRoute)
 app.use('/api/refreshToken',userRoute)
 

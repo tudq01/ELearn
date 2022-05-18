@@ -46,12 +46,7 @@ div.comment{
 #button:focus{
   background-color: rgba(0, 85, 255, 0.262);
 }
-@media screen and (max-width: 960px) {
-div .comment {
-    margin-left: 30px;
-}
 
-}
 div .alert{
     background-color: bisque;
     border-radius: 5px;
@@ -62,4 +57,38 @@ div .alert{
     background-color: white;
     color:black;
     border:solid;
+}
+
+.App {
+  text-align: left;
+  border: 1px solid black;
+  padding: 2rem;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+
+
+.Comment {
+  padding-left: 5rem;
+}
+
+.comments-container {
+  width: 60%;
+  margin-bottom: 2rem;
+  /* padding-left: 2rem; */
+  justify-content: left;
+  display: flex;
+}
+
+div.test{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

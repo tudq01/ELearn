@@ -28,8 +28,9 @@ function SearchBar(props) {
 
 
     useEffect(() => {
-        props.setTest(tests);
-        if (!click) {
+        
+        if (click===false) {
+            props.setTest(tests);
             let t = tests.filter((value, index, self) => self.findIndex((m) => m.tag === value.tag) === index)
             let result = t.map(a => a.tag)
             setTestYear(result)
@@ -38,12 +39,13 @@ function SearchBar(props) {
 
 
     const handleTestName = (e) => {
+           setClick(true);
         props.setTest(() => {
             return tests.filter(z => {
                 return z.tag === e.target.value;
             })
         });
-
+          
     }
 
     const handleGetAll = () => {
