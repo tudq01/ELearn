@@ -17,7 +17,7 @@ function TestList() {
   //filter test by button
 
   return (
-    <>
+    
       <section>
         <div className="container">
           <SearchBar
@@ -31,8 +31,8 @@ function TestList() {
             <p>Dang Quoc Tu</p>
             <hr></hr>
             <button id="button">
-              <i class="fa fa-bar-chart" aria-hidden="true"></i>Xem thong ke ket
-              qua
+              Xem thong ke ket qua
+             
             </button>
           </div>
         </div>
@@ -44,7 +44,7 @@ function TestList() {
           </div>
         </div>
       </section>
-    </>
+    
   );
 }
 

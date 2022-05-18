@@ -58,9 +58,9 @@ const Login = () => {
               {error && <Message variant='danger'>{error}</Message>}
               {loading && <Loader />}
               <div className="form">
-            <Form onSubmit={submitHandler}>
+            <form onSubmit={submitHandler}>
               
-                <h4>Email Address</h4>
+               
                 <input
                   type='email'
                   placeholder='Enter email'
@@ -69,7 +69,7 @@ const Login = () => {
                 ></input>
               
 
-                <h4>Password</h4> 
+                
                 <input
                   type='password'
                   placeholder='Enter password'
@@ -78,7 +78,7 @@ const Login = () => {
                 ></input>
               
 
-              <Button type='py-3' variant='primary'>
+              <Button id='signIn' type='py-3' variant='primary'>
                 Sign In
               </Button>
 
@@ -90,7 +90,7 @@ const Login = () => {
                   </Link>
                 </Col>
               </Row>
-            </Form>
+            </form>
             </div>
           </div>
           <div className="center">

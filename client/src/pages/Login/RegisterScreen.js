@@ -4,7 +4,8 @@ import { Form, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../actions/userAction';
 import { Loader, Message,FormContainer} from "../../components/shared";
-
+import { useNavigate } from 'react-router-dom';
+import "./Login.css"
 function RegisterScreen() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -16,14 +17,18 @@ function RegisterScreen() {
 
     const userRegister = useSelector(state => state.userRegister);
     const { loading, error, userInfo } = userRegister;
-
+    
+      const history = useNavigate();
 
     useEffect(() => {
         if (userInfo) {
         console.log(userInfo)
-        setMessage('Register Successfully');
-        }
+         setMessage("Register Successfully");
+         history("/login");
+    
     }, [userInfo]);
+    
+   
 
     const submitHandler = (e) => {
         e.preventDefault();
@@ -34,69 +39,53 @@ function RegisterScreen() {
         }
     };
   return (
-      <>
-  <FormContainer>
-          <h1>Sign Up</h1>
-          {message && <Message variant='danger'>{message}</Message>}
-          {error && <Message variant='danger'>{error}</Message>}
-          {loading && <Loader />}
-          <Form onSubmit={submitHandler}>
-              <Form.Group controlId='name'>
-                  <Form.Label>Name</Form.Label>
-                  <Form.Control
-                      type='name'
-                      placeholder='Enter name'
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                  ></Form.Control>
-              </Form.Group>
+    <section className='register'>
+      <form onSubmit={submitHandler}>
+        <h1>Sign Up</h1>
+        {message && <Message variant="danger">{message}</Message>}
+        {error && <Message variant="danger">{error}</Message>}
+        {loading && <Loader />}
 
-              <Form.Group controlId='email'>
-                  <Form.Label>Email Address</Form.Label>
-                  <Form.Control
-                      type='email'
-                      placeholder='Enter email'
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                  ></Form.Control>
-              </Form.Group>
+        <input
+          type="name"
+          placeholder="Enter name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        ></input>
 
-              <Form.Group controlId='password'>
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                      type='password'
-                      placeholder='Enter password'
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                  ></Form.Control>
-              </Form.Group>
+        <input
+          type="email"
+          placeholder="Enter email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        ></input>
 
-              <Form.Group controlId='name'>
-                  <Form.Label>Confirm Password</Form.Label>
-                  <Form.Control
-                      type='password'
-                      placeholder='Confirm password'
-                      value={confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
-                  ></Form.Control>
-              </Form.Group>
+        <input
+          type="password"
+          placeholder="Enter password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        ></input>
 
-              <Button type='submit' variant='primary'>
-                  Register
-              </Button>
-          </Form>
+        <input
+          type="password"
+          placeholder="Confirm password"
+          value={confirmPassword}
+          onChange={(e) => setConfirmPassword(e.target.value)}
+        ></input>
 
-          <Row className='py-3'>
-              <Col>
-                  Have an account?{' '}
-                  <Link to="/login">
-                      Login
-                  </Link>
-              </Col>
-          </Row>
-      </FormContainer>
-  </>
-  )
+        <Button type="submit" variant="primary">
+          Register
+        </Button>
+
+        <Row className="py-3">
+          <Col>
+            Have an account? <Link to="/login">Login</Link>
+          </Col>
+        </Row>
+      </form>
+    </section>
+  );
 }
 
 export default RegisterScreen
