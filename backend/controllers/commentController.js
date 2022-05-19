@@ -2,7 +2,7 @@
 const asyncHandler = require("express-async-handler");
 const express = require("express");
 const Comment = require("../models/commentModel");
-
+const mongoose = require('mongoose')
 
 exports.getAllComments = asyncHandler(async (req, res) => {
  
@@ -17,3 +17,4 @@ exports.getAllComments = asyncHandler(async (req, res) => {
     throw new Error("Test not found");
   }
 });
+
