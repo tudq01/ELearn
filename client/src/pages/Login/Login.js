@@ -23,7 +23,7 @@ const Login = () => {
     if (userInfo) {
       console.log(userInfo)
       console.log("Success")
-      history("/")
+      history("/home")
     }
   }, [history,userInfo]);
  

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import RegisterScreen from "../pages/Login/RegisterScreen";
+import LandingPage from '../pages/Landing/LandingPage';
 
 
 export default function AuthRoutes() {
@@ -12,7 +13,8 @@ export default function AuthRoutes() {
     return (
       
       <Routes>
-        <Route path="/" element={<Home user={userInfo} />} />
+        <Route path="/" element={<LandingPage />}></Route>
+        <Route path="/home" element={<Home user={userInfo} />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<RegisterScreen />} />
         </Routes>

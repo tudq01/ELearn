@@ -3,6 +3,7 @@ import CardItem from "../../components/CardItem/CardItem"
 import "./Home.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+
 const Home = ({user}) => {
     const [resultItem,setItem] = useState([])
       const history = useNavigate();
@@ -31,54 +32,77 @@ const Home = ({user}) => {
       
     }
     return (
-
-        /*
+      /*
         <div className="home">
             {posts.map(post=>(
                 <Card key={post.id} post={post}/>
             ))}
         </div>  */
-        <>
-            <section className='home'>
-                <div className='hello'>
-                    <h1 className='info'>Xin chào,dangquoctuhn!</h1>
-                    <p className='info'>Bạn chưa đăng ký khóa học nào</p>
-                    <h1 className='info'>Khóa học của tôi</h1>
-                    <p className='info'>Bạn chưa đăng ký khóa học nào</p>
-                    <h1 className='info'>Kết quả luyện thi mới nhất</h1>
-                    <p className='info'>Bạn chưa đăng ký khóa học nào</p>
-                    <div className='card'>
-                       
-                        {resultItem && resultItem.map((item) =>
-                            <>
-                              <CardItem
-                                date={item.finishDate}
-                                time={item.time}
-                                result={item.correct}
-                                score={item.score}
-                                name ={item.testResult[0].name+" Test "+item.testResult[0].test}
-                                id= {item._id}
-                              />
-                            </>
-                        )}
-                    </div>
-                    <a id ="detail" onClick={handleClick}>Xem chi tiet>>></a>
-                </div>
-            </section>
-            <section className='course'>
-                <div className='online-course'>
-                    <h1 className='heading'>Khoa hoc online noi bat</h1>
-                    <p>Bạn chưa đăng ký khóa học nào</p>
-                    <h1>Khóa học của tôi</h1>
-                    <p>Bạn chưa đăng ký khóa học nào</p>
-                    <h1>Kết quả luyện thi mới nhất</h1>
-                    <p>Bạn chưa đăng ký khóa học nào</p>
+      <>
+        <section className="home">
+          <h1 className="info">Xin chào {user && user.name}</h1>
+          <div className="hello">
+            <p className="info">Bạn chưa đăng ký khóa học nào</p>
+          </div>
+        </section>
 
-                </div>
-            </section>
-        </>
-       
-    )
+        <section className="course">
+          <h1 className="info">Khóa học của bạn</h1>
+          <div className="course-info">
+            <p className="info">Bạn chưa đăng ký khóa học nào</p>
+          </div>
+        </section>
+
+        <section>
+          <div className="result">
+            <h1 className="info">Kết quả luyện thi mới nhất</h1>
+
+          <div className="cards">
+              {resultItem[0] ? (
+                resultItem.map((item) => (
+                  <>
+                    
+                    <CardItem
+                      date={item.finishDate}
+                      time={item.time}
+                      result={item.correct}
+                      score={item.score}
+                      name={
+                        item.testResult[0].name +
+                        " Test " +
+                        item.testResult[0].test
+                      }
+                      id={item._id}
+                    />
+                    
+                  </>
+                ))
+              ) : (
+                <>
+                  <h1 style={{ color: "red" }}>
+                    Bạn chưa thực hiện bài thi nào
+                  </h1>
+                </>
+              )}
+           </div>
+            <a id="detail" onClick={handleClick}>
+              Xem chi tiết>>>
+            </a>
+          </div>
+        </section>
+
+        <section className="course">
+          <div className="online-course">
+            <h1 className="heading">Khoa học online nổi bật</h1>
+            <p>Bạn chưa đăng ký khóa học nào</p>
+            <h1>Khóa học của tôi</h1>
+            <p>Bạn chưa đăng ký khóa học nào</p>
+            <h1>Kết quả luyện thi mới nhất</h1>
+            <p>Bạn chưa đăng ký khóa học nào</p>
+          </div>
+        </section>
+      </>
+    );
 }
 
 export default Home

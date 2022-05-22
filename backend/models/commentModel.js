@@ -4,6 +4,9 @@ const CommentSchema = new mongoose.Schema({
   parentNodeId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Comment",
+  },userId:{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
   },
   isRootNode: Boolean,
   commentText: String,

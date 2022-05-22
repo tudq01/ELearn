@@ -1,12 +1,11 @@
 
-div .hello .card{
+div.cards{
     display: flex;
     flex-direction: row;
     justify-items: center;
     align-items: center;
     justify-content:space-around;
     width: 100%;
-    
 }
 
 div .online-course h1.heading{
@@ -15,12 +14,10 @@ div .online-course h1.heading{
     font-style: bold;
 }
 
-h1 {
-    margin-left: 20px;
-}
+
 
 @media only screen and (max-width: 900px) {
-    div .hello .card{
+    div.cards{
         flex-direction: column;
         
     }
@@ -28,4 +25,23 @@ h1 {
 
 #detail{
     color:blue;
+}
+
+div.result{
+    display: flex;
+   
+    flex-direction: column;
+}
+
+p{
+    margin-bottom: 0px;
+    margin-left: 0px;
+}
+
+
+@media only screen and (max-width: 900px){
+h1 {
+     margin-left: 0px;
+
+}
 }

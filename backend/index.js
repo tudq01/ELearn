@@ -13,6 +13,7 @@ const userRoute = require('./routes/userRoutes');
 const resultRoute = require('./routes/resultRoutes');
 const questionRoute = require('./routes/questionRoutes');
 const commentRoute = require("./routes/commentRoutes");
+const io = require("socket.io")(http);
 dotenv.config();
 connectDB();
 const app = express();
@@ -66,6 +67,11 @@ app.use('/api/refreshToken',userRoute)
 
 
 
+io.on("connection", (socket) => {
+  socket.on("message", ({ name, message }) => {
+    io.emit("message", { name, message });
+  });
+});
 
 
 
