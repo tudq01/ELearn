@@ -64,6 +64,7 @@ app.use("/api/questions", questionRoute);
 
 app.use("/api/results", resultRoute);
 app.use("/api/refreshToken", userRoute);
+app.use("/api/comments", commentRoute);
 
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
