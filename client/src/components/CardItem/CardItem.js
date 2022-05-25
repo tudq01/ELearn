@@ -7,7 +7,7 @@ function CardItem({date,time,result,score,name,id}) {
 
   const handleClick = ()=>{
     console.log(id)
-      history("/result", { state: { resultId: id } });
+      history(`/result/${id}`, { state: { resultId: id } });
   }
   return (
     <div className='card-item'>
