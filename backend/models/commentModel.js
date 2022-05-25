@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
 
-
 const CommentSchema = new mongoose.Schema({
   username: String,
   commentText: String,
@@ -16,6 +15,7 @@ const CommentSchema = new mongoose.Schema({
   },
 });
 
+module.exports = Comment = mongoose.model("Comment", CommentSchema);
 /*
 const CommentSchema = new mongoose.Schema({
   parentNodeId: {
@@ -43,4 +43,3 @@ const CommentSchema = new mongoose.Schema({
   },
 });
 */
-module.exports = Comment = mongoose.model("Comment", CommentSchema);
