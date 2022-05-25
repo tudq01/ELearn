@@ -12,14 +12,11 @@ const testRoute = require("./routes/testRoutes")
 const userRoute = require('./routes/userRoutes');
 const resultRoute = require('./routes/resultRoutes');
 const questionRoute = require('./routes/questionRoutes');
-<<<<<<< Updated upstream
-=======
 const commentRoute = require("./routes/commentRoutes");
 
 const Comment = require("./models/commentModel");
 
 
->>>>>>> Stashed changes
 dotenv.config();
 connectDB();
 const app = express();
