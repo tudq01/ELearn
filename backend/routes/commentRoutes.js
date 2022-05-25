@@ -3,5 +3,7 @@ const router = express.Router();
 const CommentCtrl = require("../controllers/commentController");
 
 router.get("/", CommentCtrl.getAllComments);
-router.post("/",CommentCtrl.saveComment)
+
+router.get("/:testId", CommentCtrl.getComments);
+router.post("/", CommentCtrl.saveComment);
 module.exports = router;
