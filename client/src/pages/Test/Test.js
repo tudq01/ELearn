@@ -7,10 +7,15 @@ import axios from 'axios';
 
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-
+function generate() {
+    var timestamp = (new Date().getTime() / 1000 | 0).toString(16);
+    return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function() {
+        return (Math.random() * 16 | 0).toString(16);
+    }).toLowerCase();
+};
 const getNewComment = (commentValue, isRootNode = false, parentNodeId) => {
   return {
-    id: uuidv4(),
+    id: generate(),
     commentText: commentValue,
     childCommments: [],
     isRootNode,
@@ -42,13 +47,15 @@ const initialState = {
   },
 };
 
+
+
 function Test() {
   const location = useLocation();
   const state = location.state;   /*   test data  table     */
   console.log(state);
   const history = useNavigate();
 
-
+   
 
 
   const handleTest = async ()=>{
@@ -58,8 +65,24 @@ function Test() {
      history("/toeic", { state: state });
   }
 
-   const [comments, setComments] = useState(initialState);
+   const [comments, setComments] = useState({});
    const [rootComment, setRootComment] = useState("");
+
+   useEffect(()=>{
+     axios
+       .get(`http://localhost:5000/api/comments/?testId=`.concat(state._id))
+       .then((res) => {
+         console.log(res.data);
+         setComments(res.data)
+       });
+   },[])
+
+
+   
+
+
+
+
    const addComment = (parentId, newCommentText) => {
      let newComment = null;
      if (parentId) {
@@ -87,7 +110,7 @@ function Test() {
    const commentMapper = (comment) => {
      return {
        ...comment,
-       childCommments: comment.childCommments
+       childCommments: (comment.childCommments||[])
          .map((id) => comments[id])
          .map((comment) => commentMapper(comment)),
      };
