@@ -7,7 +7,7 @@ function TestRoutes() {
   return (
     <Routes>
       <Route path="/testlist" element={<TestList />} />
-      <Route path="/test" element={<Test />} />
+      <Route path="/test/:testId" element={<Test />} />
       <Route path="/toeic" element={<ToeicTest />} />
     </Routes>
   );

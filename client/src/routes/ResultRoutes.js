@@ -4,7 +4,7 @@ import TestResult from "../pages/Result/TestResult";
 function ResultRoutes() {
   return (
     <Routes>
-      <Route path="/result" element={<TestResult />} />
+      <Route path="/result/:resultId" element={<TestResult />} />
     </Routes>
   );
 }

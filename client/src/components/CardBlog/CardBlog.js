@@ -14,13 +14,10 @@ function CardBlog(props) {
         <h1>{props.name}  TEST  {props.test}</h1>
         <span>{props.time} phut  </span> <br></br>
         <span>{props.part} phan thi |  {props.numberQuestion} cau hoi  </span>
-        <Link to=
+        <Link to=    {`/test/${props._id}`}
         
-        "/test"
+     
             state={props}
-          
-        
-          
         >
           <button onClick={handleClick}>Xem ket qua</button> 
         </Link>

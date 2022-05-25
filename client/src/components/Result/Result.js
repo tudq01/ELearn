@@ -30,7 +30,7 @@ function Result({resultItem,loading}) {
             <td>
               <button
                 onClick={() => {
-                  history("/result", {
+                  history(`/result/${item._id}`, {
                     state: { resultId: item._id },
                   });
                 }}
