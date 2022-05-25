@@ -24,8 +24,9 @@ html {
 }
 section{
     background-color: white;
-    margin-bottom: 10px;
-    margin-top:106px;
+    margin-bottom: 200px;
+
+        padding:2rem 9%;
 }
 
 p{  

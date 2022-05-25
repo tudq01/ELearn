@@ -12,6 +12,14 @@ const testRoute = require("./routes/testRoutes")
 const userRoute = require('./routes/userRoutes');
 const resultRoute = require('./routes/resultRoutes');
 const questionRoute = require('./routes/questionRoutes');
+<<<<<<< Updated upstream
+=======
+const commentRoute = require("./routes/commentRoutes");
+
+const Comment = require("./models/commentModel");
+
+
+>>>>>>> Stashed changes
 dotenv.config();
 connectDB();
 const app = express();
@@ -65,12 +73,81 @@ app.use('/api/refreshToken',userRoute)
 
 
 
+const http = require("http").createServer(app);
+const io = require("socket.io")(http);
+
+// Soketio
+let users = [];
+
+io.on("connection", (socket) => {
+  console.log(socket.id + ' connected.')
+
+  socket.on("joinRoom", (testId) => {
+    const user = { userId: socket.id, room: testId };
+
+    const check = users.every((user) => user.userId !== socket.id);
+
+    if (check) {
+      users.push(user);
+      socket.join(user.room);
+    } else {
+      users.map((user) => {
+        if (user.userId === socket.id) {
+          if (user.room !== testId) {
+            socket.leave(user.room);
+            socket.join(testId);
+            user.room = testId;
+          }
+        }
+      });
+    }
+
+    // console.log(users)
+    // console.log(socket.adapter.rooms)
+  });
+
+  socket.on("createComment", async (msg) => {
+    const  {testId,commentText,username,createdAt, send } = msg;
+  
+    const newComment = new Comment({
+      testId,
+      commentText,
+      username,
+      createdAt
+    });
+     
+    if (send === "replyComment") {
+     
+      const {testId, commentText, username, createdAt } = newComment;
+
+      const comment = await Comment.findById(testId);
+  
+      if (comment) {
+        comment.childComments.push({
+        
+          testId,
+          commentText,
+          username,
+          createdAt,
+        });
+
+        await comment.save();
+        io.to(comment.testId).emit("sendReplyCommentToClient", comment);
+      }
+    } else {
+      await newComment.save();
+      io.to(newComment.testId).emit("sendCommentToClient", newComment);
+    }
+  });
+
+  socket.on("disconnect", () => {
+    // console.log(socket.id + ' disconnected.')
+    users = users.filter((user) => user.userId !== socket.id);
+  });
+});
 
 
 
-
-
-
-app.listen("5000", () => {
+http.listen("5000", () => {
   console.log("Server is running!");
 });

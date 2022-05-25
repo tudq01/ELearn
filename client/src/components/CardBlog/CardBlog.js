@@ -16,7 +16,7 @@ function CardBlog(props) {
         <span>{props.part} phan thi |  {props.numberQuestion} cau hoi  </span>
         <Link to=
         
-        "/test"
+        {`/test/${props._id}`}
             state={props}
           
         
