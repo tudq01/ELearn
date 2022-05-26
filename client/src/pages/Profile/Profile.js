@@ -1,19 +1,24 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import TokenService from "../../service/tokenService";
-import CardItem from "../../components/CardItem/CardItem";
-import { Suspense } from "react";
+import { Form } from "react-bootstrap";
+
 import Result from "../../components/Result/Result";
 import "./Profile.css";
 import Pagination from "../../components/Result/Pagination";
 import { useNavigate } from "react-router-dom";
+import {getDate,getAscending,getDescending} from "../../service/dateService"
 function Profile() {
   const history = useNavigate();
   const [loading, setLoading] = useState(false);
-
+  const [increase,setIncrease]=useState(false);
   const [resultItem, setItem] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
+
+ 
+  
+  
 
   useEffect(() => {
     setLoading(true);
@@ -28,6 +33,14 @@ function Profile() {
       )
       .then(
         (response) => {
+
+          //response.data.result
+        
+          // giam dan
+        // 
+          
+          
+          response.data.result = getDescending(response.data.result);
           setItem(response.data.result);
 
           setLoading(false);
@@ -39,6 +52,10 @@ function Profile() {
       );
   }, []);
 
+ 
+ const handleColor= (e)=>{
+    console.log(e.target.value);
+ }
   // Get current posts
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -49,9 +66,31 @@ function Profile() {
   return (
     <>
       <section className="profile">
-     
         <div className="card">
-          <Result resultItem={currentPosts} loading={loading} />
+          <div id="sort-bar">
+            <select name="sort" onClick={(e)=>{
+               if(e.target.value==="inc"){
+                 const s = getAscending(resultItem);
+                 setItem(s)
+               }else {
+                 const s = getDescending(resultItem);
+                 setItem(s);}
+            }}>
+              <option
+                value="dec"
+               
+              >
+                Mới nhất
+              </option>
+              <option
+                value="inc"
+             
+              >
+                Cũ nhất
+              </option>
+            </select>
+          </div>
+          <Result resultItem={currentPosts} loading={loading} status={increase}/>
 
           <Pagination
             resultsPerPage={postsPerPage}

@@ -3,7 +3,7 @@ import CardItem from "../../components/CardItem/CardItem"
 import "./Home.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { getDate } from "../../service/dateService";
 const Home = ({user}) => {
     const [resultItem,setItem] = useState([])
       const history = useNavigate();
@@ -16,6 +16,7 @@ const Home = ({user}) => {
            })
            .then(
              (response) => {
+             //  response.data.result = getDate(response.data.result);
                setItem(response.data.result);
                console.log(response);
              },

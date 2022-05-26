@@ -124,7 +124,7 @@ exports.getAllResult = asyncHandler(async (req, res) => {
     
     const today = new Date(result[i].finishDate);
     result[i].finishDate =
-      today.getDate() + "/" + today.getMonth() + "/" + today.getFullYear();
+     today.getDate() + "/" + today.getMonth() + "/" + today.getFullYear();
   }
 
   if (result) {
