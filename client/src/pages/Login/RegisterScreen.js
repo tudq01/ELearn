@@ -21,11 +21,12 @@ function RegisterScreen() {
       const history = useNavigate();
 
     useEffect(() => {
-        if (userInfo) {
+        
         console.log(userInfo)
-       
+        if(userInfo){
         setMessage("Register Successfully");
         }
+        
     }, [userInfo]);
       
 

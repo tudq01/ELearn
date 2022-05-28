@@ -8,7 +8,7 @@ const Home = ({user}) => {
     const [resultItem,setItem] = useState([])
       const history = useNavigate();
     useEffect(()=>{
-       
+       alert("Login success")
        if(user)
          axios
            .get("http://localhost:5000/api/results/".concat(user._id), {
@@ -24,7 +24,7 @@ const Home = ({user}) => {
              }
            );  
     },[user])
-
+      
 
     const handleClick =()=>{
       console.log("hello");

@@ -90,6 +90,7 @@ function CommentCard({ id }) {
                 key={comment._id}
                 comment={comment}
                 socket={socket}
+                id={id}
               />
             ))}
           </div>

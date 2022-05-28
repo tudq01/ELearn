@@ -1,13 +1,17 @@
 import "./CommentCard.js";
-import React from "react";
+import React, { useEffect } from "react";
 import moment from "moment";
 
 import CommentItem from "./CommentItem.js";
 
 function CommentC({ children, comment, socket }) {
+  useEffect(()=>{
+    console.log(children);
+  },[])
   return (
     <>
-      <div className="comment_card">
+    
+      <div className="comment_card"  id={comment._id}>
         <div className="comment_card_row">
           <h3>{comment.username}</h3>
         </div>
@@ -17,7 +21,7 @@ function CommentC({ children, comment, socket }) {
         <span>{new Date(comment.createdAt).toLocaleString()}</span>
 
         <p dangerouslySetInnerHTML={{ __html: comment.commentText }} />
-
+              
         {children}
       </div>
     </>

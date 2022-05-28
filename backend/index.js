@@ -15,6 +15,7 @@ const questionRoute = require("./routes/questionRoutes");
 const commentRoute = require("./routes/commentRoutes");
 
 const Comment = require("./models/commentModel");
+const { default: mongoose } = require("mongoose");
 
 dotenv.config();
 connectDB();
@@ -100,34 +101,45 @@ io.on("connection", (socket) => {
   });
 
   socket.on("createComment", async (msg) => {
-    const { testId, commentText, username, createdAt, send } = msg;
+    const { testId, commentText, username, createdAt, send,str,commentId } = msg;
+
+    //commentid la testid cua room   
+    //testid la id cua comment
 
     const newComment = new Comment({
-      testId,
-      commentText,
       username,
+      commentText,
       createdAt,
+      testId: commentId,
     });
 
     if (send === "replyComment") {
-      const { testId, commentText, username, createdAt } = newComment;
-
-      const comment = await Comment.findById(testId);
-
+      const {
+        username,
+        commentText,
+        createdAt,
+        testId: commentId,
+      } = newComment;
+      // console.log(newComment)
+          console.log(commentId);
+          console.log(str[0])
+    const comment = await Comment.findById(commentId);
+   console.log(comment);
+    
+      
       if (comment) {
-        comment.childComments.push({
-          testId,
-          commentText,
-          username,
-          createdAt,
-        });
-
-        await comment.save();
-        io.to(comment.testId).emit("sendReplyCommentToClient", comment);
+    
+        
+       
+        comment.childComments.push(newComment);
+          await comment.save();  
+     
+        
+        io.to(commentId).emit("sendReplyCommentToClient", comment);
       }
     } else {
       await newComment.save();
-      io.to(newComment.testId).emit("sendCommentToClient", newComment);
+      io.to(newComment.commentId).emit("sendCommentToClient", newComment);
     }
   });
 
