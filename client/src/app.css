@@ -156,7 +156,12 @@ li.dropItem:hover{
   flex-direction: column;
   align-items: center;
 }
-
+.left{
+  margin-top: 50px;
+}
+.right{
+  margin-bottom: 50px;
+}
 .center{
   height: 100%;
   display: flex;

@@ -1,47 +1,58 @@
 const mongoose = require('mongoose');
 
-const questionSchema = mongoose.Schema({
+const questionSchema = mongoose.Schema(
+  {
     question: {
-        type: Number
-
+      type: Number,
     },
-    options:[{
-        type: String}
-    ]
-    , answer: {
-        type: String
-    }, explain: {
-        type: String
-    }, content: {
-        type: String
-    }, upload: {
-        type: String
-    },part:{
-        type:Number
-    }, types: {
-        type: String
+    options: [
+      {
+        type: String,
+      },
+    ],
+    answer: {
+      type: String,
+    },
+    explain: {
+      type: String,
+    },
+    content: {
+      type: String,
+    },
+    upload: {
+      type: String,
+    },
+    part: {
+      type: Number,
+    },
+    types: {
+      type: String,
     },
 
-    questions: [{
+    questions: [
+      {
         question: {
-            type: Number
-
+          type: Number,
         },
-        options: [{
-            type: String
-        }]
-        , answer: {
-            type: String
-        }, question: {
-            type: Number
-        },content:{
-            type:String
+        options: [
+          {
+            type: String,
+          },
+        ],
+        answer: {
+          type: String,
+        },
+        content: {
+          type: String,
         }
-    }]
-  
-}, {
+       
+      },
+    ],
+  },
+  {
     timestamps: true,
-});
+  }
+);
 
 
 const groupQuestionSchema = mongoose.Schema({

@@ -4,10 +4,11 @@ import Comments from "../../components/comments/Comments";
 import "./TestResult.css";
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
+import Answer from "../../components/TestResult/Answer";
 function TestResult(props) {
 
   const location = useLocation();
-  const { resultId } = location.state;
+  const { resultId } = location.state;      //RESULTid
   const [data,setData] = useState([])
   const history = useNavigate();
   useEffect(()=>{
@@ -28,13 +29,17 @@ function TestResult(props) {
     console.log(data);
    },[data])
    
-
+   const handleDetailResult = ()=>{
+     history(`/result/details/${resultId}`)
+   }
 
    const handleAgain = ()=>{
     axios.get("http://localhost:5000/api/test/".concat(resultId)).then(
       (response) => {
         console.log(response.data[0].result);
-      history("/test", { state: response.data[0].result }); 
+      history(`/test/${response.data[0].result._id}`, {
+        state: response.data[0].result,
+      }); 
       },
       (error) => {
         console.log(error);
@@ -96,10 +101,15 @@ function TestResult(props) {
           <div className="test-result">
             Dap An{" "}
             <span>
-              <button>Xem chi tiet dap an</button>
+              <button onClick={handleDetailResult}>Xem chi tiet dap an</button>
             </span>
           </div>
         </div>
+    
+        <Answer  resultId={resultId} />
+          
+        
+        
         <div className="content">
           <Comments
             commentsUrl="http://localhost:3004/comments"

@@ -108,7 +108,9 @@ function ToeicTest() {
       .then(
         (response) => {
           console.log(response);
-          history("/result", { state: { resultId: response.data.result._id } }); //pass resultId to result page
+          history(`/result/${response.data.result._id}`, {
+            state: { resultId: response.data.result._id },
+          }); //pass resultId to result page
         },
         (error) => {
           console.log(error);

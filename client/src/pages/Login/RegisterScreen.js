@@ -39,7 +39,7 @@ function RegisterScreen() {
     };
   return (
     <section className='register'>
-      <form onSubmit={submitHandler}>
+      <form className="regist" onSubmit={submitHandler}>
         <h1>Sign Up</h1>
         {message && <Message variant="danger">{message}</Message>}
         {error && <Message variant="danger">{error}</Message>}

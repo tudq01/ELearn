@@ -77,10 +77,12 @@ form {
 
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (min-width: 960px) {
   div .wrapper{
  flex-direction: column;
   }
+  
+
 
 }
 
@@ -93,3 +95,16 @@ form {
 #container{
   align-items: center;
 }
+
+form.regist{
+  box-shadow: 0px 5px 33px -21px rgb(66 68 90);
+  width: 70%;
+  padding:50px;
+}
+
+section.register{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+

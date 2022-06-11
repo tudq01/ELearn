@@ -2,7 +2,7 @@ const asyncHandler = require("express-async-handler");
 const express = require("express");
 const mongoose = require("mongoose");
 const TestResult = require("../models/resultModel");
-
+const Test = require("../models/testModel");
 exports.saveResult = asyncHandler(async (req, res) => {
   const test = mongoose.Types.ObjectId(req.params.testId);
 
@@ -121,10 +121,13 @@ exports.getAllResult = asyncHandler(async (req, res) => {
     result[i].score = score;
     result[i].accuracy = correctAnswer*100 / result[i].correct.length;
     result[i].correct = correctAnswer + "/" + result[i].correct.length;
-    
-    const today = new Date(result[i].finishDate);
-    result[i].finishDate =
-     today.getDate() + "/" + today.getMonth() + "/" + today.getFullYear();
+    // time zone
+    const today = new Date(result[i].finishDate).toLocaleString("en-GB", {
+      timeZone: "Asia/Jakarta",
+    }).split(",");
+    result[i].finishDate= today[0];
+    //result[i].finishDate =
+    // today.getDate() + "/" + today.getMonth() + "/" + today.getFullYear();
   }
 
   if (result) {
@@ -203,6 +206,120 @@ exports.getTestResult = asyncHandler(async (req, res) => {
     throw new Error("Fail to get result");
   }
 });
+
+exports.getAnswerResult = asyncHandler(async (req, res) => {
+  const resultId = mongoose.Types.ObjectId(req.params.resultId);
+  //const testId = mongoose.Types.ObjectId(req.params.testId);
+  const result = await TestResult.find({_id:resultId},{"test":1,"answer":1,"correct":1})
+  console.log(result[0].test)  // testId
+
+  //get answer
+   const test2 = await Test.aggregate([
+  {
+    '$match': {
+      '_id': result[0].test
+    }
+  }, {
+    '$lookup': {
+      'from': 'questions', 
+      'localField': 'question._id', 
+      'foreignField': '_id', 
+      'as': 'result'
+    }
+  }
+]);
+   var answer=[];
+   var keyAnswer = [];
+  if (test2) {
+    const s = test2[0].result.sort((a, b) =>
+      a.question > b.question ? 1 : -1
+    );
+
+    const grouped = groupBy(s, (item) => item.part);
+    const z = new Map([...grouped.entries()].sort());
+
+    answer = [...z.values()]; // all answer and quetion /////////////
+ 
+    for (let i = 0; i < answer.length; i++) {
+      const part = answer[i]; // this an array
+      part.forEach((element) => {
+        if (element.types === "normal") {
+          keyAnswer.push(element.answer);
+        } else {
+          const ans = element.questions;
+          ans.forEach((ele) => {
+            keyAnswer.push(ele.answer);
+          });
+        }
+      });
+    }
+   
+  } else {
+    res.status(400).json({ message: "Fail to get answer result" });
+    throw new Error("Fail to get answer result");
+  }
+
+  if (result) {
+    res.status(201).json(
+      {result,keyAnswer}
+    );
+  } else {
+    res.status(400).json({ message: "Fail to get answer result" });
+    throw new Error("Fail to get answer result");
+  }
+});
+
+exports.getDetailResult = asyncHandler(async (req, res) => {
+  const resultId = mongoose.Types.ObjectId(req.params.resultId);
+  //const testId = mongoose.Types.ObjectId(req.params.testId);
+  const result = await TestResult.find(
+    { _id: resultId },
+    { test: 1, answer: 1, correct: 1 }
+  );
+  console.log(result[0].test); // testId
+
+  //get answer
+  const test2 = await Test.aggregate([
+    {
+      $match: {
+        _id: result[0].test,
+      },
+    },
+    {
+      $lookup: {
+        from: "questions",
+        localField: "question._id",
+        foreignField: "_id",
+        as: "result",
+      },
+    },
+  ]);
+  var answer = [];
+  var keyAnswer = [];
+  if (test2) {
+    const s = test2[0].result.sort((a, b) =>
+      a.question > b.question ? 1 : -1
+    );
+
+    const grouped = groupBy(s, (item) => item.part);
+    const z = new Map([...grouped.entries()].sort());
+
+    answer = [...z.values()]; // all answer and quetion /////////////
+
+    
+  } else {
+    res.status(400).json({ message: "Fail to get answer result" });
+    throw new Error("Fail to get answer result");
+  }
+
+  if (result) {
+    res.status(201).json({ result, answer });
+  } else {
+    res.status(400).json({ message: "Fail to get answer result" });
+    throw new Error("Fail to get answer result");
+  }
+});
+
 function getCorrectAnswer(arr) {
   return arr.filter((value) => value === 1).length;
 }
@@ -234,4 +351,20 @@ function getScore(arr) {
   const read = getCorrectAnswer(arr.slice(100, 200));
 
   return getLisScore(lis) + getReadScore(read);
+}
+
+
+
+function groupBy(list, keyGetter) {
+  const map = new Map();
+  list.forEach((item) => {
+    const key = keyGetter(item);
+    const collection = map.get(key);
+    if (!collection) {
+      map.set(key, [item]);
+    } else {
+      collection.push(item);
+    }
+  });
+  return map;
 }
