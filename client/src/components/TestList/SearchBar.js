@@ -49,10 +49,12 @@ function SearchBar(props) {
     }
 
     const handleGetAll = () => {
+        setTestYear([]);
         dispatch(getAllTest());
         console.log(tests);
+        props.setTest(tests);
         setClick(true);
-        setTestYear([])
+        
     }
 
 

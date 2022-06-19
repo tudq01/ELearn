@@ -5,6 +5,7 @@ import "./TestResult.css";
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import Answer from "../../components/TestResult/Answer";
+import CommentCard from "../../components/comment/CommentCard";
 function TestResult(props) {
 
   const location = useLocation();
@@ -54,8 +55,9 @@ function TestResult(props) {
           <div className="head-content">
             <h1>
               {" "}
-              Ket qua thi : {data.testResult&&data.testResult[0].name} Test{" "}
-              {data.testResult&&data.testResult[0].test}
+              Ket qua thi : {data.testResult &&
+                data.testResult[0].name} Test{" "}
+              {data.testResult && data.testResult[0].test}
             </h1>
             <button> Xem dap an </button>
             <button onClick={handleAgain}> Lam lai bai thi </button>
@@ -105,20 +107,21 @@ function TestResult(props) {
             </span>
           </div>
         </div>
-    
-        <Answer  resultId={resultId} />
-          
-        
-        
-        <div className="content">
-          <Comments
-            commentsUrl="http://localhost:3004/comments"
-            currentUserId="1"
-          />
-        </div>
+
+        <Answer resultId={resultId} />
+        {/* Comment of that test */}
+        {data.testResult && <CommentCard id={data.testResult[0]._id} />}
       </section>
     </>
   );
 }
 
 export default TestResult;
+/*<div className="content">
+          <Comments
+            commentsUrl="http://localhost:3004/comments"
+            currentUserId="1"
+          />
+         //can cai testid
+          <CommentCard id={ data.testResult[0]._id} />
+        </div>*/ 

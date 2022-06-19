@@ -119,7 +119,7 @@ exports.getAllResult = asyncHandler(async (req, res) => {
 
     const score = getScore(result[i].correct);
     result[i].score = score;
-    result[i].accuracy = correctAnswer*100 / result[i].correct.length;
+    result[i].accuracy = (correctAnswer*100 / result[i].correct.length).toFixed(2);
     result[i].correct = correctAnswer + "/" + result[i].correct.length;
     // time zone
     const today = new Date(result[i].finishDate).toLocaleString("en-GB", {
@@ -169,6 +169,7 @@ exports.getTestResult = asyncHandler(async (req, res) => {
         finishDate: 1,
         time: 1,
         testResult: {
+          _id:1,
           name: 1,
           test: 1,
         },
@@ -189,7 +190,7 @@ exports.getTestResult = asyncHandler(async (req, res) => {
       ).length;
     const score = getScore(result[i].correct);
     result[i].score = score;
-    result[i].accuracy = (correctAnswer * 100) / result[i].correct.length;
+    result[i].accuracy = ((correctAnswer * 100) / result[i].correct.length).toFixed(2);
      result[i].result = correctAnswer + "/" + result[i].correct.length;
     result[i].correct = correctAnswer ;
     result[i].wrong = wrongAnswer;

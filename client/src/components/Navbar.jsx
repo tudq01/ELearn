@@ -39,12 +39,22 @@ const Navbar = ({user}) => {
             </li>
             <li className="nav-item">
               <Link
-                to="/toeic"
+                to="/courses"
                 activeClassName="active"
                 className="nav-links"
                 onClick={handleClick}
               >
                 Course
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link
+                to="/flashcard"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                Flashcards
               </Link>
             </li>
             <li className="nav-item">
@@ -72,7 +82,7 @@ const Navbar = ({user}) => {
               </li>
             ) : (
               <li className="nav-item">
-                <Link to="login" className="nav-links"  onClick={handleClick}>
+                <Link to="login" className="nav-links" onClick={handleClick}>
                   Login
                 </Link>
               </li>

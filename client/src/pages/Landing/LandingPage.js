@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import TokenService from '../../service/tokenService';
 import { useDispatch, useSelector } from "react-redux";
-
+// TODO : build landing
 function LandingPage() {
     const history = useNavigate();
      const userLogin = useSelector((state) => state.userLogin);

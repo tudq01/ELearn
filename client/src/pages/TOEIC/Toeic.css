@@ -34,7 +34,9 @@ div .question-bar{
     
 }
 
-
+#question-wrapper{
+    min-width: 0;
+}
 
 
 div .part div #question-wrap{
@@ -47,6 +49,11 @@ div .part div #question-wrap{
     
    
 }
+img{
+object-fit: cover;
+overflow: hidden;
+}
+
 @media only screen and (max-width: 966px) {
     div .container{
      flex-direction: column;
@@ -65,6 +72,11 @@ div.question-context{
     align-items: flex-start;
     justify-content: center;
     width: 98%;
+}
+  #question-wrapper{
+    width: 98%;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 }

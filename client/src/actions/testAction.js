@@ -57,7 +57,7 @@ export const getAllTest = () => async (dispatch) => {
   try {
     dispatch({ type: types.TEST_REQUEST });
 
-    const { data } = await api.get("/test/");
+    const { data } = await api.get('/test/');
 
     dispatch({
       type: types.TEST_SUCCESS,

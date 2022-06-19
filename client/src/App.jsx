@@ -14,6 +14,7 @@ import AuthRoutes from "./routes/AuthRoutes";
 import TestRoutes from "./routes/TestRoutes";
 import ProfileRoutes from "./routes/ProfileRoutes";
 import ResultRoutes from "./routes/ResultRoutes";
+import CourseRoutes from "./routes/CourseRoutes";
 
 const App = () => {
   
@@ -71,6 +72,7 @@ const App = () => {
 
       <Navbar user={userInfo} />
        <AuthRoutes/>
+       <CourseRoutes/>
        <TestRoutes/>
        <ProfileRoutes/>
        <ResultRoutes/>
