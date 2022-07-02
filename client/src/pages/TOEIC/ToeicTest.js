@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import "./Toeic.css";
 import { useLocation, Link } from "react-router-dom";
 import axios from "axios";
@@ -11,17 +11,14 @@ function ToeicTest() {
   const state = useRef(location.state);
   /*   test data  table  time part question */
   const [value, setValue] = useState(0);
-
   /* navigate things */
   const history = useNavigate();
-
   //  time and minute countdown
   const [seconds, setSecond] = useState(0);
   const [minutes, setMinute] = useState(state.current.time);
-
   const keyAnswer = useRef([]);
-
   const lists = useRef([]);
+
   useEffect(() => {
     var number = 0;
     state.current.parts.forEach((value, index) => {
@@ -86,7 +83,7 @@ function ToeicTest() {
     history("/");
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = useCallback(() => {
     const userChoice = [];
     for (let i = 1; i <= 200; i++) {
       var s = document.querySelector(
@@ -119,8 +116,10 @@ function ToeicTest() {
 
     const time = getFinishTime(minutes, seconds, state.current.time);
     console.log(time);
-  };
-
+  },[state]);
+   if(lists.current.length!=7){
+    return <h1>Loading ...</h1>
+   }
   return (
     <section id="toeic-test">
       <div className="time-bar">
