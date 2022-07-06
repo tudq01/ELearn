@@ -1,7 +1,4 @@
-
 const mongoose = require("mongoose");
-
-
 const ResultSchema = new mongoose.Schema({
     
     user: {
@@ -21,5 +18,5 @@ const ResultSchema = new mongoose.Schema({
     finishDate: Date,
     time: String
 });
-
 module.exports = TestResult = mongoose.model("TestResult", ResultSchema);
+

@@ -36,7 +36,6 @@ exports.authUser = asyncHandler(async (req, res) => {
             httpOnly: true,
            
         })
-    
     .json({
         _id: user._id,
         name: user.name,

@@ -12,6 +12,9 @@ function TestResult(props) {
   const { resultId } = location.state;      //RESULTid
   const [data,setData] = useState([])
   const history = useNavigate();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   useEffect(()=>{
 
       axios.get("http://localhost:5000/api/results/test/".concat(resultId)).then(
@@ -49,7 +52,7 @@ function TestResult(props) {
    }
   return (
     <>
-      {resultId} Use this resultId to get info result
+  
       <section id="test-result">
         <div className="content">
           <div className="head-content">

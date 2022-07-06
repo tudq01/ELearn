@@ -5,7 +5,7 @@ function TestTable(props) {
       <div className="blog-wrap">
           {props.tests.map((test) => (
               <CardBlog key={test.id} name={test.name} numberQuestion={test.numberQuestion} test={test.test}
-                  part={test.part} tag={test.tag} time={test.time}  _id={test._id}></CardBlog>
+                  part={test.part} tag={test.tag} time={test.time}  _id={test._id} audio={test.audio}></CardBlog>
           ))}
       </div>
   )

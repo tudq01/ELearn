@@ -60,10 +60,11 @@ app.use(express.json());
 app.use("/auth", authRoute);
 app.use("/api/test", testRoute);
 app.use("/api/users", userRoute);
+app.use("/api/refreshToken", userRoute);
 app.use("/api/questions", questionRoute);
 
 app.use("/api/results", resultRoute);
-app.use("/api/refreshToken", userRoute);
+
 app.use("/api/comments", commentRoute);
 
 const http = require("http").createServer(app);

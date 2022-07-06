@@ -13,6 +13,7 @@ import CommentCard from "../../components/comment/CommentCard";
 function Test() {
   const location = useLocation();
   const state = location.state; /*   test data  table     */
+  console.log(state.audio)
   const history = useNavigate();
 
   const handleTest = async () => {
@@ -21,6 +22,8 @@ function Test() {
     );
     state.questions = data.answer;
     state.parts = data.array;
+    
+    
     history("/toeic", { state: state });
   };
 

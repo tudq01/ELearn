@@ -7,8 +7,11 @@ import { useSelector } from "react-redux";
 import TokenService from "../../service/tokenService";
 import { Tabs, Tab } from "react-bootstrap";
 function ToeicTest() {
+  // component rerender by the  time
   const location = useLocation();
   const state = useRef(location.state);
+  
+
   /*   test data  table  time part question */
   const [value, setValue] = useState(0);
   /* navigate things */
@@ -130,13 +133,11 @@ function ToeicTest() {
         <button onClick={handleExit}>Thoat</button>
       </div>
 
-    
-     
       <div className="container">
         <div className="question-context">
           <audio controls>
             <source
-              src="https://cdn.simplecast.com/audio/cae8b0eb-d9a9-480d-a652-0defcbe047f4/episodes/af52a99b-88c0-4638-b120-d46e142d06d3/audio/500344fb-2e2b-48af-be86-af6ac341a6da/default_tc.mp3"
+              src={state.current.audio}
               type="audio/mpeg"
             />
             Your browser does not support the audio element.
@@ -148,7 +149,7 @@ function ToeicTest() {
                 {ques.types === "group" ? (
                   <>
                     <div id="question-wrapper">
-                      Part {ques.part}
+                       
                       <p>{ques.content}</p>
                       <p>
                         {ques.question < 100 ? (
@@ -204,7 +205,7 @@ function ToeicTest() {
                         <span id="light">{ques.question}</span>{" "}
                         <p> {ques.answer}</p>
                         <em>{ques.content}</em>
-                        Part {ques.part}
+                        
                         <br></br>
                         <p>
                           {Array.from(ques.options).map((opt) => (

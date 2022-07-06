@@ -22,6 +22,8 @@ const testSchema = mongoose.Schema({
     }, 
     numberQuestion: {
         type: Number
+    },audio:{
+        type:String
     },
     question: [
         {
@@ -32,7 +34,5 @@ const testSchema = mongoose.Schema({
 }, {
     timestamps: true,
 });
-
-
 
 module.exports = Test = mongoose.model('Test', testSchema);
