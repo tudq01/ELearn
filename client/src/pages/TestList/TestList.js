@@ -34,17 +34,19 @@ function TestList() {
           filterText={filterText}
           onTextChange={handleFilterText}
         ></SearchBar>
+
         <div className="user" id="card">
           <img
             src={TokenService.getuserInfo() && TokenService.getuserInfo().photo}
-            className="avatar"
+            className="user-avatar"
           />
-          <p>{TokenService.getuserInfo() && TokenService.getuserInfo().name}</p>
+          <p className="user-name">{TokenService.getuserInfo() && TokenService.getuserInfo().name}</p>
           <hr></hr>
           <Link to="/profile">
-            <button id="button">Xem thong ke ket qua</button>
+            <button id="result-but">Xem thong ke ket qua</button>
           </Link>
         </div>
+
       </div>
       <div className="search-result">
         <div className="blog-card">

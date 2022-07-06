@@ -15,7 +15,7 @@ div .card i {
 
 div .container #card {
   margin-right: 20px;
-  border: solid;
+
   border-radius: 10px;
   display:flex;
   flex-direction: column;
@@ -23,6 +23,7 @@ div .container #card {
   align-items: center;
   width: 20%;;
   flex-wrap: wrap;
+  box-shadow: 0px 0px 8px 4px rgba(0,0,0,0.15); 
   
 }
 
@@ -66,7 +67,7 @@ div .blog-wrap {
 div .search-result {
   margin-bottom: 200px;
 }
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 990px) {
 div .container #card{
     display: none;
   }
@@ -108,16 +109,17 @@ div .container #card{
 }
 
 
-#button {
+#result-but {
  border-radius: 30px;
   margin-bottom: 30px;
   background-color: white;
   color:black;
   margin-right: 20px;
   padding: 10px;
+  box-shadow: 0px 0px 8px 4px rgba(0,0,0,0.2);
 }
 
-#button:hover {
+#result-but:hover {
   color: white;
   background-color: var(--green);
 }
@@ -125,3 +127,8 @@ div .container #card{
 #card p {
   margin-top: 10px;
 }
+
+img.user-avatar{
+   margin-top: 10px;
+  border-radius: 50px;
+ }

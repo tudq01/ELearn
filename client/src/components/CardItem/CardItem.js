@@ -12,11 +12,11 @@ function CardItem({date,time,result,score,name,id}) {
   return (
     <div className='card-item'>
      <h1>{name}</h1>
-     <p>Ngày làm bài: {date}</p>
-     <p>Thời gian hoàn thành: {time}</p>
-     <p>Kết quả:{result}</p>
-     <p>Điểm:{score}</p>
-     <button id="but" onClick={handleClick}>Xem chi tiet</button>
+     <p> <i class='far fa-calendar-alt' ></i> Ngày làm bài: {date}</p>
+     <p> <i class='far fa-clock'></i> Thời gian hoàn thành: {time}</p>
+     <p><i class="fa fa-list-alt"></i> Kết quả:{result}</p>
+     <p><i class="fas fa-flag-checkered"></i> Điểm:{score}</p>
+     <button id="butt" onClick={handleClick}>Xem chi tiet</button>
     </div>
   )
 }
