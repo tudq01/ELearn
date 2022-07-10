@@ -3,8 +3,8 @@ import React from "react";
 import "./TestList.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import TestTable from "../../components/TestList/TestTable";
-import SearchBar from "../../components/TestList/SearchBar";
+import { TestTable, SearchBar } from "../../components/TestList";
+
 import TokenService from "../../service/tokenService";
 import { useEffect } from "react";
 function TestList() {

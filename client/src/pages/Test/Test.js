@@ -1,12 +1,10 @@
-import React, { useEffect, useContext } from "react";
+import React from "react";
 import "./Test.css";
 import { useLocation } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 import CommentCard from "../../components/comment/CommentCard";
 
@@ -47,7 +45,7 @@ function Test() {
 
             <div class="alert alert-warning" role="alert" id="alert">
               Sẵn sàng để bắt đầu làm full test? Để đạt được kết quả tốt nhất,
-              bạn cần dành ra 120 phút cho bài test này.
+              bạn cần dành ra {state.time} phút cho bài test này.
             </div>
 
             <button

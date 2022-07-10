@@ -3,7 +3,6 @@ import CardItem from "../../components/CardItem/CardItem"
 import "./Home.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { getDate } from "../../service/dateService";
 const Home = ({user}) => {
     const [resultItem,setItem] = useState([])
       const history = useNavigate();
@@ -42,9 +41,6 @@ const Home = ({user}) => {
       <>
         <section className="home">
           <h1 className="info">Xin chào {user && user.name}</h1>
-          <div className="hello">
-            <p className="info">Bạn chưa đăng ký khóa học nào</p>
-          </div>
         </section>
 
         <section className="course">

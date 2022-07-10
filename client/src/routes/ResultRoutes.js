@@ -1,7 +1,9 @@
 import React from 'react'
 import { Route, Routes } from "react-router-dom";
-import DetailResult from '../pages/TestResult/Detail/DetailResult';
-import TestResult from "../pages/TestResult/TestResult";
+
+
+const DetailResult = React.lazy(() => import("../pages/TestResult/Detail/DetailResult"));
+const  TestResult = React.lazy(() => import("../pages/TestResult/TestResult"));
 function ResultRoutes() {
   return (
     <Routes>

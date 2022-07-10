@@ -38,7 +38,7 @@ function FormInput({ id, socket, setReply, send, name }) {
 
   return (
     <div className="form_input">
-      <h1>Comment</h1>
+      <h1>Bình luận</h1>
       <div
         ref={contentRef}
         contentEditable="true"

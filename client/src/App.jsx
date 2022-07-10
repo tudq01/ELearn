@@ -2,7 +2,7 @@ import Navbar from "./components/Navbar";
 import "./app.css";
 
 import { BrowserRouter } from "react-router-dom";
-import { useEffect } from "react";
+import React,{ useEffect } from "react";
 import Footer from "./components/Footer/Footer"
 
 
@@ -15,6 +15,13 @@ import TestRoutes from "./routes/TestRoutes";
 import ProfileRoutes from "./routes/ProfileRoutes";
 import ResultRoutes from "./routes/ResultRoutes";
 import CourseRoutes from "./routes/CourseRoutes";
+
+
+const loading = (
+  <div className="pt-3 text-center">
+    <div className="sk-spinner sk-spinner-pulse"></div>
+  </div>
+);
 
 const App = () => {
   
@@ -69,15 +76,15 @@ const App = () => {
 
   return (
     <BrowserRouter>
-
       <Navbar user={userInfo} />
-       <AuthRoutes/>
-       <CourseRoutes/>
-       <TestRoutes/>
-       <ProfileRoutes/>
-       <ResultRoutes/>
-      <Footer></Footer>
-      
+      <React.Suspense fallback={loading}>
+        <AuthRoutes />
+        <CourseRoutes />
+        <TestRoutes />
+        <ProfileRoutes />
+        <ResultRoutes />
+        <Footer></Footer>
+      </React.Suspense>
     </BrowserRouter>
   );
 };

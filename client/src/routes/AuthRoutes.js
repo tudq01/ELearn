@@ -1,11 +1,14 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useSelector, useDispatch } from "react-redux";
-import Home from "../pages/Home/Home";
-import Login from "../pages/Login/Login";
-import RegisterScreen from "../pages/Login/RegisterScreen";
-import LandingPage from '../pages/Landing/LandingPage';
-import Footer from '../components/Footer/Footer';
+
+
+const Home = React.lazy(() => import("../pages/Home/Home"));
+const Login = React.lazy(() => import("../pages/Login/Login"));
+const RegisterScreen = React.lazy(() =>
+  import("../pages/Login/RegisterScreen")
+);
+const LandingPage = React.lazy(() => import("../pages/Landing/LandingPage"));
 
 
 export default function AuthRoutes() {

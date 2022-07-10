@@ -6,7 +6,7 @@ function DetailResult() {
    const [answer,setAnswer]= useState([])
    const [yourA,setYourA]=useState([])
     const [correct, setCorrect] = useState([]);
-   const [loading,setLoading]=useState(false)
+   const [loading,setLoading]=useState(true);
    console.log(resultId);
   useEffect(() => {
     setLoading(true);
@@ -31,9 +31,9 @@ function DetailResult() {
 
      if (loading) {
        return (
-         <section>
-           <h2>Loading..</h2>.
-         </section>
+        
+           <h2>Loading..</h2>
+         
        );
      }
     

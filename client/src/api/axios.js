@@ -29,7 +29,7 @@ instance.interceptors.response.use(
         const originalConfig = err.config;
         if (originalConfig.url !== "/users/login" && err.response) {
             // Access Token was expired
-            if (err.response.status === 401 && !originalConfig._retry) {
+            if (err.response.status === 402 && !originalConfig._retry) {
                 originalConfig._retry = true;
                 try {
                     const rs = await instance.post("/refreshToken/token", {
