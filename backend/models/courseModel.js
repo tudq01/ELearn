@@ -7,11 +7,17 @@ const courseSchema = mongoose.Schema({
     tag: {
         type: String
     },
-    short_description: {
+    image: {
+        type: String
+    },
+    shortDescription: {
         type: String
     },
     description: {
         type: String
+    },
+    price: {
+        type: Number
     },
     lessons: [
         {

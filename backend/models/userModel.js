@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema({
     photo:{
         type: String, default: "https://drive.google.com/uc?id=1qXaXkoI1c1fr5PlQyVc0voa_G3XQ4LOf"
     },
-    enrolled_courses: [
+    enrolledCourses: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Course'

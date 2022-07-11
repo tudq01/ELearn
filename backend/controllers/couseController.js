@@ -45,9 +45,9 @@ exports.enrollCourse = asyncHandler(async (req, res) => {
     const course = mongoose.Types.ObjectId(req.params.courseId);
     const { userId } = req.body;
 
-    const result = User.findByIdAndUpdate(
+    const result = await User.findByIdAndUpdate(
         userId, 
-        { $push: { enrolled_courses: course } }, 
+        { $push: { enrolledCourses: course } }, 
         function(error, success){
             if (error){
                 console.log(error);
@@ -63,3 +63,25 @@ exports.enrollCourse = asyncHandler(async (req, res) => {
         throw new Error("Fail to save");
     }
 });
+
+/**
+ * Get courses enrolled by user
+ * @route   GET /api/courses/by-user/:userId
+ * @access  Public
+ */
+exports.getCoursesByUser = asyncHandler(async (req, res) => {
+    const courseIds = (await User.findById(req.params.userId).select("enrolledCourses -_id")).enrolledCourses;
+
+    if (courseIds){
+        const courses = await Course.find({ '_id': { $in: courseIds } });
+        if (courses){
+            res.status(200).json(courses);
+        } else {
+            res.status(404).json( { message: "Courses not found" });
+            throw new Error("Courses not found");
+        }
+    } else {
+        res.status(404).json( { message: "User not found" });
+        throw new Error("User not found");
+    }
+})

@@ -87,7 +87,7 @@ const Home = ({user}) => {
               )}
            </div>
             <a id="detail" onClick={handleClick}>
-              Xem chi tiết>>>
+              Xem chi tiết&gt;&gt;&gt;
             </a>
           </div>
         </section>

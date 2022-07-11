@@ -4,7 +4,7 @@ const CourseCtrl = require('../controllers/couseController');
 
 router.get("/", CourseCtrl.getCourses);
 router.get("/:courseId", CourseCtrl.getCourseById);
-
+router.get("/by-user/:userId", CourseCtrl.getCoursesByUser);
 router.post("/enrollment/:courseId", CourseCtrl.enrollCourse);
 
 module.exports = router;
