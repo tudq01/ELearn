@@ -1,0 +1,65 @@
+const express = require("express");
+const asyncHandler = require("express-async-handler");
+const Course = require("../models/courseModel");
+const User = require("../models/userModel");
+const mongoose = require("mongoose");
+
+/**
+ * Fetch all courses
+ * @route   GET /api/courses
+ * @access  Public
+ */
+exports.getCourses = asyncHandler(async (req, res) => {
+    const courses = await Course.find().select('-description -lessons'); // Leave description for faster loading time
+
+    if (courses) {
+        res.status(200).json(courses);
+    } else {
+        res.status(404).json({ message: "Courses not found" });
+        throw new Error("Courses not found");
+    }
+});
+
+/**
+ * Fetch course details by its id
+ * @route   GET /api/courses/:courseId
+ * @access  Public
+ */
+exports.getCourseById = asyncHandler(async (req, res) => {
+    const course = await Course.findById(req.params.courseId);
+
+    if (course){
+        res.status(200).json(course);
+    } else {
+        res.status(404).json({ message: "Course not found" });
+        throw new Error("Course not found");
+    }
+});
+
+/**
+ * Enroll course by user id
+ * @route   POST /api/courses/enrollment/:courseId
+ * @access  Public
+ */
+exports.enrollCourse = asyncHandler(async (req, res) => {
+    const course = mongoose.Types.ObjectId(req.params.courseId);
+    const { userId } = req.body;
+
+    const result = User.findByIdAndUpdate(
+        userId, 
+        { $push: { enrolled_courses: course } }, 
+        function(error, success){
+            if (error){
+                console.log(error);
+            } else {
+                console.log(success);
+            }
+        });
+    
+    if (result){
+        res.status(200).json(result);
+    } else {
+        res.status(400).json( { message: "Fail to save" });
+        throw new Error("Fail to save");
+    }
+});
