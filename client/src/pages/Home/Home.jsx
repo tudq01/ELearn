@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { getDate } from "../../service/dateService";
 const Home = ({user}) => {
     const [resultItem,setItem] = useState([])
-      const history = useNavigate();
+    const history = useNavigate();
     useEffect(()=>{
        
        if(user)
@@ -23,7 +23,7 @@ const Home = ({user}) => {
              (error) => {
                console.log(error);
              }
-           );  
+           );
     },[user])
 
 

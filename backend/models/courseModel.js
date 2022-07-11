@@ -19,16 +19,6 @@ const courseSchema = mongoose.Schema({
     price: {
         type: Number
     },
-    lessons: [
-        {
-            title: {
-                type: String
-            },
-            video: {
-                type: String
-            }
-        }
-    ]
 }, {
     timestamps: true,
 });

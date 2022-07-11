@@ -23,7 +23,7 @@ const Navbar = ({user}) => {
         <div className="nav-container">
           <Link to="/" className="nav-logo">
             TOEIC
-            <i class="fa fa-code" aria-hidden="true"></i>
+            <i className="fa fa-code" aria-hidden="true"></i>
           </Link>
 
           <ul className={click ? "nav-menu active" : "nav-menu"}>
