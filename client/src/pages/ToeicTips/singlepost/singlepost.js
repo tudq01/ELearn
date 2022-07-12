@@ -3,14 +3,14 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 
 export default function SinglePost() {
-  const { postId } = useParams();
+  const { postsId } = useParams();
     const [post, setPost] = useState([]);
 
-    console.log(postId);
+    console.log(postsId);
 
     useEffect(() => {
       axios
-          .get(`http://localhost:5000/api/posts/${postId}`)
+          .get(`http://localhost:5000/api/posts/${postsId}`)
           .then(
               (response) => {
                   console.log(response);
