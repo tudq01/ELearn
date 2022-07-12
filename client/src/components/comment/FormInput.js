@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import "./FormInput.css";
 
-import TokenService from "../../service/tokenService";
+import TokenService from "../../utils/tokenService";
 function FormInput({ id, socket, setReply, send, name }) {
   const nameRef = useRef(); //userName
   const contentRef = useRef();

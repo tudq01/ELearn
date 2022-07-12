@@ -7,7 +7,7 @@ import Footer from "./components/Footer/Footer"
 
 
 import { useSelector,useDispatch } from 'react-redux';
-import TokenService from "./service/tokenService";
+import TokenService from "./utils/tokenService";
 import * as types from './constant/User/userConstants'
 
 import AuthRoutes from "./routes/AuthRoutes";

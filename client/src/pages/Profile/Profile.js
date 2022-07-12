@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import TokenService from "../../service/tokenService";
+import TokenService from "../../utils/tokenService";
 import {Result,Pagination} from "../../components/Result"
 
 import "./Profile.css";
 
 import { useNavigate } from "react-router-dom";
-import {getAscending,getDescending} from "../../service/dateService"
+import {getAscending,getDescending} from "../../utils/dateService"
 
 function Profile() {
   const history = useNavigate();

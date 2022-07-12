@@ -27,6 +27,7 @@ section{
     margin-bottom: 200px;
     margin-top:106px;
         padding:2rem 9%;
+        
 }
 
 
@@ -321,6 +322,7 @@ input{
 
 footer{
     margin-top: auto;
+  
 }
 
 .Hero {
@@ -330,6 +332,7 @@ footer{
   align-items: center;
   background-size: cover;  
   background-image: url('../src/img/background.jpg');
+  
 }
 
 .Heading {
