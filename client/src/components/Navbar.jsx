@@ -22,8 +22,10 @@ const Navbar = ({user}) => {
       <nav className="nav-bar">
         <div className="nav-container">
           <Link to="/" className="nav-logo">
-            TOEIC
-            <i className="fa fa-code" aria-hidden="true"></i>
+            <h2 class="m-0 " id="name">
+              <i class="fa fa-book me-3" ></i>{" "}
+              <span id="name1">eLEARNING</span>
+            </h2>
           </Link>
 
           <ul className={click ? "nav-menu active" : "nav-menu"}>
@@ -54,7 +56,7 @@ const Navbar = ({user}) => {
                 className="nav-links"
                 onClick={handleClick}
               >
-                Flashcards
+                Flashcard
               </Link>
             </li>
             <li className="nav-item">
@@ -64,7 +66,7 @@ const Navbar = ({user}) => {
                 className="nav-links"
                 onClick={handleClick}
               >
-                TestList
+                Tests
               </Link>
             </li>
             <li className="nav-item">
