@@ -4,7 +4,7 @@ import { useLocation, Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import TokenService from "../../service/tokenService";
+import TokenService from "../../utils/tokenService";
 import { Tabs, Tab } from "react-bootstrap";
 function ToeicTest() {
   // component rerender by the  time

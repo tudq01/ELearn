@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Link} from 'react-router-dom';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+import {  Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../actions/userAction';
-import { Loader, Message,FormContainer} from "../../components/shared";
+import { Loader, Message} from "../../components/shared";
 import { useNavigate } from 'react-router-dom';
 import "./Login.css"
 function RegisterScreen() {

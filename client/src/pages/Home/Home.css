@@ -29,7 +29,6 @@ div .online-course h1.heading{
 
 div.result{
     display: flex;
-   
     flex-direction: column;
 }
 

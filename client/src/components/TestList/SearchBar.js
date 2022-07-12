@@ -34,6 +34,8 @@ function SearchBar(props) {
             let t = tests.filter((value, index, self) => self.findIndex((m) => m.tag === value.tag) === index)
             let result = t.map(a => a.tag)
             setTestYear(result)
+        }else{
+          props.setTest(tests);
         }
     }, [tests, props,click]);
 
@@ -52,7 +54,6 @@ function SearchBar(props) {
         setTestYear([]);
         dispatch(getAllTest());
         console.log(tests);
-        props.setTest(tests);
         setClick(true);
         
     }

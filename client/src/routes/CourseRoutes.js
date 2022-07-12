@@ -1,7 +1,10 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Course from "../pages/Course/Course";
-import CourseDetails from "../pages/Course/CourseDetails";
+
+
+
+const Course = React.lazy(() => import("../pages/Course/Course"));
+const CourseDetails = React.lazy(() => import("../pages/Course/CourseDetails"));
 
 function CourseRoutes() {
   return (

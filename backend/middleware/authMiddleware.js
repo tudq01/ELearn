@@ -4,9 +4,9 @@ const asyncHandler = require('express-async-handler');
 const User = require('../models/userModel');
 const catchError = (err, res) => {
     if (err instanceof TokenExpiredError) {
-        return res.status(401).send({ message: "Unauthorized! Access Token was expired!" });
+        return res.status(402).send({ message: "Unauthorized! Access Token was expired!" });
     }
-    return res.sendStatus(401).send(err);
+    return res.sendStatus(402).send(err);
 }
 
 exports.protect = asyncHandler(async (req, res, next) => {

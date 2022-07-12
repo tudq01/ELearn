@@ -27,6 +27,7 @@ section{
     margin-bottom: 200px;
     margin-top:106px;
         padding:2rem 9%;
+        
 }
 
 
@@ -54,7 +55,7 @@ p{
   cursor: pointer;
 }
 li.dropItem:hover{
-  color:white;
+  color:rgb(248, 248, 212);
   background-color: #27ae60;
 }
 .avatar {
@@ -321,4 +322,31 @@ input{
 
 footer{
     margin-top: auto;
+  
+}
+
+.Hero {
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;  
+  background-image: url('../src/img/background.jpg');
+  
+}
+
+.Heading {
+  color: #ffffff;
+  font-size: 5rem;
+  font-weight: 700;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.TextStyled {
+  color: #ffffffb7;
+  font-size: 1.2rem;
+  font-weight: 200;
+  text-align: justify;
+  margin-right: 10%;
 }
