@@ -1,8 +1,9 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import FlashcardList from '../../components/Flashcard/FlashcardList';
 import './Flashcard.css'
 import axios from 'axios'
-
+import { Link} from "react-router-dom";
 function App() {
   const [flashcards, setFlashcards] = useState([])
   const [categories, setCategories] = useState([])
@@ -87,6 +88,32 @@ function App() {
  
   return (
     <>
+    <div className="container-fluid bg-primary py-5 mb-5 page-header">
+        <div className="container py-5">
+          <div className="row justify-content-center">
+            <div className="col-lg-10 text-center">
+              <h1 className="display-3 text-white animated slideInDown">
+                Flash Card
+              </h1>
+              <nav aria-label="breadcrumb">
+                <ol className="breadcrumb justify-content-center">
+                  <li className="breadcrumb-item">
+                    <Link className="text-white" to={`/`}>
+                      Home
+                    </Link>
+                  </li>
+                  <li
+                    className="breadcrumb-item text-white active"
+                    aria-current="page"
+                  >
+                    Flash Card
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className='row'>
       <div className='column left'>
       <form  onSubmit={handleSubmit}>
@@ -139,6 +166,5 @@ function App() {
 
 
 
-}
 
-export default App;
+

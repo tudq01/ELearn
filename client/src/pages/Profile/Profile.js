@@ -5,7 +5,7 @@ import {Result,Pagination} from "../../components/Result"
 
 import "./Profile.css";
 
-import { useNavigate } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 import {getAscending,getDescending} from "../../utils/dateService"
 
 function Profile() {
@@ -65,32 +65,56 @@ function Profile() {
   const paginate = (pageNumber) => setCurrentPage(pageNumber); //handleClick
   return (
     <>
-      <section className="profile">
+      <div className="container-fluid bg-primary py-5 mb-5 page-header">
+        <div className="container py-5">
+          <div className="row justify-content-center">
+            <div className="col-lg-10 text-center">
+              <h1 className="display-3 text-white animated slideInDown">
+                Result
+              </h1>
+              <nav aria-label="breadcrumb">
+                <ol className="breadcrumb justify-content-center">
+                  <li className="breadcrumb-item">
+                    <Link className="text-white" to={`/`}>
+                      Home
+                    </Link>
+                  </li>
+                  <li
+                    className="breadcrumb-item text-white active"
+                    aria-current="page"
+                  >
+                    Result
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
         <div className="card">
           <div id="sort-bar">
-            <select name="sort" onClick={(e)=>{
-               if(e.target.value==="inc"){
-                 const s = getAscending(resultItem);
-                 setItem(s)
-               }else {
-                 const s = getDescending(resultItem);
-                 setItem(s);}
-            }}>
-              <option
-                value="dec"
-               
-              >
-                Mới nhất
-              </option>
-              <option
-                value="inc"
-             
-              >
-                Cũ nhất
-              </option>
+            <select
+              name="sort"
+              onClick={(e) => {
+                if (e.target.value === "inc") {
+                  const s = getAscending(resultItem);
+                  setItem(s);
+                } else {
+                  const s = getDescending(resultItem);
+                  setItem(s);
+                }
+              }}
+            >
+              <option value="dec">Mới nhất</option>
+              <option value="inc">Cũ nhất</option>
             </select>
           </div>
-          <Result resultItem={currentPosts} loading={loading} status={increase}/>
+          <Result
+            resultItem={currentPosts}
+            loading={loading}
+            status={increase}
+          />
 
           <Pagination
             resultsPerPage={postsPerPage}
@@ -99,7 +123,7 @@ function Profile() {
             currentPage={currentPage}
           />
         </div>
-      </section>
+    
     </>
   );
 }

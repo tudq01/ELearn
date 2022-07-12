@@ -40,7 +40,7 @@ const Home = ({user}) => {
         </div>  */
       <>
         <section className="home">
-          <h1 className="info">Xin chào {user && user.name}</h1>
+          <h1 className="info">Welcome {user && user.name}</h1>
         </section>
 
         <section className="course">
