@@ -6,6 +6,11 @@ import TokenService from "../../utils/tokenService"
 import "./CourseDetails.css";
 import axios from 'axios';
 
+function numberWithCommas(x) {
+    if (x)
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
 function RegisterButton(props){
     const [message, setMessage] = useState(null);
 
@@ -22,21 +27,11 @@ function RegisterButton(props){
     const registerHandler = (e) => {
         e.preventDefault();
         axios
-            .post('http://localhost:5000/api/courses/enroll/'.concat(courseId), { userId: props.user._id })
-            .then(
-                (response) => {
-                    console.log(response);
-                    setMessage("Course registered successfully");
-                    e.target.display = "none";
-                }
-            )
-            .catch(
-                (error) => {
-                    console.log(error);
-                    setMessage("There was an error registering this course. Please try again later");
-                }
-            );
-    }
+            .post(`http://localhost:5000/api/courses/enroll/${courseId}`, { "userId": userId })
+            .catch((error) => { setMessage("There was an error registering this course. Please try again"); return; })
+        setMessage("Course registered successfully");
+        e.target.style.display = "none";
+    };
 
     if (studentList && studentList.includes(userId)){
         return (
@@ -116,7 +111,7 @@ function CourseDetails() {
 
                             <div className="course-info d-flex justify-content-between align-items-center">
                                 <h5>Registration fee</h5>
-                                <p>{ course.price + " VND"}</p>
+                                <p>{ numberWithCommas(course.price) + " VND" }</p>
                             </div>
 
                             <div className="course-info d-flex justify-content-between align-items-center">
