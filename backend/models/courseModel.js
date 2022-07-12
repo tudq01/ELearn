@@ -10,6 +10,15 @@ const courseSchema = mongoose.Schema({
     image: {
         type: String
     },
+    lecturer: {
+        type: String
+    },
+    lessonNumber: {
+        type: Number
+    },
+    duration: {
+        type: String
+    },
     shortDescription: {
         type: String
     },

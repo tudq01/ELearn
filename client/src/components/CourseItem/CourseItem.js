@@ -2,6 +2,10 @@ import React from 'react';
 import './CourseItem.css';
 import { Link } from "react-router-dom";
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+}
+
 function CourseItem(props) {
     return (
         <div className="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
@@ -15,12 +19,18 @@ function CourseItem(props) {
                     </div>
                 </div>
                 <div className="text-center p-4 pb-0">
-                    <h3 className="mb-0">{ props.course.price + " VND" }</h3>
+                    <h3 className="mb-0">{ numberWithCommas(props.course.price) + " VND" }</h3>
+                    <div className="mb-3">
+                        { props.course.tag }
+                    </div>
                     <h5 className="mb-4">{ props.course.title }</h5>
                 </div>
                 <div className="d-flex border-top">
-                    <p>{ props.course.shortDescription }</p>
+                    <small className="flex-fill text-center border-end py-2"><i className="fa fa-user-tie text-primary me-2"></i>{ props.course.lecturer }</small>
+                    <small className="flex-fill text-center border-end py-2"><i className="fa fa-clock text-primary me-2"></i>{ props.course.duration }</small>
+                    <small className="flex-fill text-center py-2"><i className="fa fa-user text-primary me-2"></i>{ props.course.lessonNumber + " lessons" }</small>
                 </div>
+                <div className="d-flex border-top p-3">{ props.course.shortDescription }</div>
             </div>
         </div>
     )
