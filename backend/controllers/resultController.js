@@ -8,10 +8,8 @@ exports.saveResult = asyncHandler(async (req, res) => {
 
   const { user, answer, time, correct } = req.body;
 
-
   var finishDate = new Date();
 
-   
   const result = await TestResult.create({
     user,
     test,
@@ -40,77 +38,79 @@ exports.saveResult = asyncHandler(async (req, res) => {
   _id: "627ef45a53e9619dc8f156bb"  // id of result
 */
 exports.getAllResult = asyncHandler(async (req, res) => {
-  const limit =req.query.limit;
+  const limit = req.query.limit;
   const userId = mongoose.Types.ObjectId(req.params.userId);
   var result;
-  if(limit==='4'){
-  result = await TestResult.aggregate([
-    {
-      $match: {
-        user: userId,
-      },
-    },
-    {
-      $project: {
-        user: 0,
-        answer: 0,
-      },
-    },
-    {
-      $lookup: {
-        from: "tests",
-        localField: "test",
-        foreignField: "_id",
-        as: "testResult",
-      },
-    },
-    {
-      $project: {
-        correct: 1,
-        finishDate: 1,
-        time: 1,
-        testResult: {
-          name: 1,
-          test: 1,
+  if (limit === "4") {
+    result = await TestResult.aggregate([
+      {
+        $match: {
+          user: userId,
         },
       },
-    },
-    {
-      $limit: 4,
-    },
-  ]);}else  { result= await TestResult.aggregate([
-    {
-      $match: {
-        user: userId,
-      },
-    },
-    {
-      $project: {
-        user: 0,
-        answer: 0,
-      },
-    },
-    {
-      $lookup: {
-        from: "tests",
-        localField: "test",
-        foreignField: "_id",
-        as: "testResult",
-      },
-    },
-    {
-      $project: {
-        correct: 1,
-        finishDate: 1,
-        time: 1,
-        testResult: {
-          name: 1,
-          test: 1,
+      {
+        $project: {
+          user: 0,
+          answer: 0,
         },
       },
-    }
-   
-  ]);}
+      {
+        $lookup: {
+          from: "tests",
+          localField: "test",
+          foreignField: "_id",
+          as: "testResult",
+        },
+      },
+      {
+        $project: {
+          correct: 1,
+          finishDate: 1,
+          time: 1,
+          testResult: {
+            name: 1,
+            test: 1,
+          },
+        },
+      },
+      {
+        $limit: 3,
+      },
+    ]);
+  } else {
+    result = await TestResult.aggregate([
+      {
+        $match: {
+          user: userId,
+        },
+      },
+      {
+        $project: {
+          user: 0,
+          answer: 0,
+        },
+      },
+      {
+        $lookup: {
+          from: "tests",
+          localField: "test",
+          foreignField: "_id",
+          as: "testResult",
+        },
+      },
+      {
+        $project: {
+          correct: 1,
+          finishDate: 1,
+          time: 1,
+          testResult: {
+            name: 1,
+            test: 1,
+          },
+        },
+      },
+    ]);
+  }
 
   for (let i = 0; i < result.length; i++) {
     const correctAnswer = result[i].correct.filter(
@@ -119,13 +119,18 @@ exports.getAllResult = asyncHandler(async (req, res) => {
 
     const score = getScore(result[i].correct);
     result[i].score = score;
-    result[i].accuracy = (correctAnswer*100 / result[i].correct.length).toFixed(2);
+    result[i].accuracy = (
+      (correctAnswer * 100) /
+      result[i].correct.length
+    ).toFixed(2);
     result[i].correct = correctAnswer + "/" + result[i].correct.length;
     // time zone
-    const today = new Date(result[i].finishDate).toLocaleString("en-GB", {
-      timeZone: "Asia/Jakarta",
-    }).split(",");
-    result[i].finishDate= today[0];
+    const today = new Date(result[i].finishDate)
+      .toLocaleString("en-GB", {
+        timeZone: "Asia/Jakarta",
+      })
+      .split(",");
+    result[i].finishDate = today[0];
     //result[i].finishDate =
     // today.getDate() + "/" + today.getMonth() + "/" + today.getFullYear();
   }
@@ -140,9 +145,8 @@ exports.getAllResult = asyncHandler(async (req, res) => {
   }
 });
 
-
 exports.getTestResult = asyncHandler(async (req, res) => {
- const resultId = mongoose.Types.ObjectId(req.params.resultId);
+  const resultId = mongoose.Types.ObjectId(req.params.resultId);
   const result = await TestResult.aggregate([
     {
       $match: {
@@ -169,7 +173,7 @@ exports.getTestResult = asyncHandler(async (req, res) => {
         finishDate: 1,
         time: 1,
         testResult: {
-          _id:1,
+          _id: 1,
           name: 1,
           test: 1,
         },
@@ -181,21 +185,19 @@ exports.getTestResult = asyncHandler(async (req, res) => {
     const correctAnswer = result[i].correct.filter(
       (value) => value === 1
     ).length;
-     const wrongAnswer = result[i].correct.filter(
-       (value) => value === 0
-     ).length;
+    const wrongAnswer = result[i].correct.filter((value) => value === 0).length;
 
-      const skipAnswer = result[i].correct.filter(
-        (value) => value === -1
-      ).length;
+    const skipAnswer = result[i].correct.filter((value) => value === -1).length;
     const score = getScore(result[i].correct);
     result[i].score = score;
-    result[i].accuracy = ((correctAnswer * 100) / result[i].correct.length).toFixed(2);
-     result[i].result = correctAnswer + "/" + result[i].correct.length;
-    result[i].correct = correctAnswer ;
+    result[i].accuracy = (
+      (correctAnswer * 100) /
+      result[i].correct.length
+    ).toFixed(2);
+    result[i].result = correctAnswer + "/" + result[i].correct.length;
+    result[i].correct = correctAnswer;
     result[i].wrong = wrongAnswer;
     result[i].skip = skipAnswer;
-     
   }
 
   if (result) {
@@ -211,26 +213,30 @@ exports.getTestResult = asyncHandler(async (req, res) => {
 exports.getAnswerResult = asyncHandler(async (req, res) => {
   const resultId = mongoose.Types.ObjectId(req.params.resultId);
   //const testId = mongoose.Types.ObjectId(req.params.testId);
-  const result = await TestResult.find({_id:resultId},{"test":1,"answer":1,"correct":1})
-  console.log(result[0].test)  // testId
+  const result = await TestResult.find(
+    { _id: resultId },
+    { test: 1, answer: 1, correct: 1 }
+  );
+  console.log(result[0].test); // testId
 
   //get answer
-   const test2 = await Test.aggregate([
-  {
-    '$match': {
-      '_id': result[0].test
-    }
-  }, {
-    '$lookup': {
-      'from': 'questions', 
-      'localField': 'question._id', 
-      'foreignField': '_id', 
-      'as': 'result'
-    }
-  }
-]);
-   var answer=[];
-   var keyAnswer = [];
+  const test2 = await Test.aggregate([
+    {
+      $match: {
+        _id: result[0].test,
+      },
+    },
+    {
+      $lookup: {
+        from: "questions",
+        localField: "question._id",
+        foreignField: "_id",
+        as: "result",
+      },
+    },
+  ]);
+  var answer = [];
+  var keyAnswer = [];
   if (test2) {
     const s = test2[0].result.sort((a, b) =>
       a.question > b.question ? 1 : -1
@@ -240,7 +246,7 @@ exports.getAnswerResult = asyncHandler(async (req, res) => {
     const z = new Map([...grouped.entries()].sort());
 
     answer = [...z.values()]; // all answer and quetion /////////////
- 
+
     for (let i = 0; i < answer.length; i++) {
       const part = answer[i]; // this an array
       part.forEach((element) => {
@@ -254,16 +260,13 @@ exports.getAnswerResult = asyncHandler(async (req, res) => {
         }
       });
     }
-   
   } else {
     res.status(400).json({ message: "Fail to get answer result" });
     throw new Error("Fail to get answer result");
   }
 
   if (result) {
-    res.status(201).json(
-      {result,keyAnswer}
-    );
+    res.status(201).json({ result, keyAnswer });
   } else {
     res.status(400).json({ message: "Fail to get answer result" });
     throw new Error("Fail to get answer result");
@@ -306,8 +309,6 @@ exports.getDetailResult = asyncHandler(async (req, res) => {
     const z = new Map([...grouped.entries()].sort());
 
     answer = [...z.values()]; // all answer and quetion /////////////
-
-    
   } else {
     res.status(400).json({ message: "Fail to get answer result" });
     throw new Error("Fail to get answer result");
@@ -353,8 +354,6 @@ function getScore(arr) {
 
   return getLisScore(lis) + getReadScore(read);
 }
-
-
 
 function groupBy(list, keyGetter) {
   const map = new Map();

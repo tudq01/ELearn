@@ -67,6 +67,16 @@ const Navbar = ({user}) => {
                 TestList
               </Link>
             </li>
+            <li className="nav-item">
+              <Link
+                to="/toeictips"
+                activeClassName="active"
+                className="nav-links"
+                onClick={handleClick}
+              >
+                TOEIC Tips
+              </Link>
+            </li>
             {user ? (
               <li className="nav-item">
                 <Link

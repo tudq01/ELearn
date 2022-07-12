@@ -3,9 +3,9 @@ import React from "react";
 import "./TestList.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import TestTable from "../../components/TestList/TestTable";
-import SearchBar from "../../components/TestList/SearchBar";
-import TokenService from "../../service/tokenService";
+import { TestTable, SearchBar } from "../../components/TestList";
+
+import TokenService from "../../utils/tokenService";
 import { useEffect } from "react";
 function TestList() {
   //serachBar

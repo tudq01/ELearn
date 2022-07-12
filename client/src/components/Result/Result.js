@@ -1,10 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useNavigate } from "react-router-dom";
-import {
-  getDate,
-  getAscending,
-  getDescending,
-} from "../../service/dateService";
+
 function Result({resultItem,loading,status}) {
       const history = useNavigate();
      // status: false giam dan moi nhat

@@ -25,7 +25,7 @@ function Answer({resultId}) {
   return (
     <div className="content">
       
-        <h1>Answer</h1>
+        <h1>Kết quả</h1>
         <div className="answer">
           {userAnswer &&
             userAnswer.map((ans, index) => (

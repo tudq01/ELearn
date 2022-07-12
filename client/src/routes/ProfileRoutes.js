@@ -1,7 +1,8 @@
 import React from 'react'
 import { Route, Routes } from "react-router-dom";
-import FlashCard from '../pages/FlashCard/FlashCard';
-import Profile from "../pages/Profile/Profile";
+
+const FlashCard = React.lazy(() => import("../pages/FlashCard/FlashCard"));
+const Profile = React.lazy(() => import("../pages/Profile/Profile"));
 function ProfileRoutes() {
   return (
     <Routes>

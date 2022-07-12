@@ -10,3 +10,11 @@ div.answer{
 div.answer-item{
     margin-bottom: 20px;
 }
+
+#light{
+    background:#6495ed;
+    color:white;
+    border-radius:8px;
+    padding:4px;
+    margin:5px 5px;
+}

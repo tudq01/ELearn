@@ -1,6 +1,6 @@
 import axios from 'axios'
 import * as types from '../constant/User/userConstants'
-import TokenService from '../service/tokenService'
+import TokenService from '../utils/tokenService'
 import Cookies from 'universal-cookie';
 export const login = (email, password) => async (dispatch) => {
     const cookies = new Cookies();

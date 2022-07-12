@@ -1,6 +1,5 @@
 import React,{useEffect, useState} from "react";
 import { useLocation } from "react-router-dom";
-import Comments from "../../components/comments/Comments";
 import "./TestResult.css";
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
@@ -52,61 +51,65 @@ function TestResult(props) {
    }
   return (
     <>
-  
       <section id="test-result">
         <div className="content">
           <div className="head-content">
             <h1>
               {" "}
-              Ket qua thi : {data.testResult &&
+              Kết quả thi : {data.testResult &&
                 data.testResult[0].name} Test{" "}
               {data.testResult && data.testResult[0].test}
             </h1>
-            <button> Xem dap an </button>
-            <button onClick={handleAgain}> Lam lai bai thi </button>
+            <button className="result"> Xem đáp án </button>
+            <button onClick={handleAgain} className="result">
+              {" "}
+              Làm lại bài thi{" "}
+            </button>
           </div>
           <div className="result-content">
             <div className="result-item">
               <p>
-                <i class="fa fa-list-alt" aria-hidden="true"></i>Ket qua lam bai{" "}
-                {data.result}
+                <i class="fa fa-list-alt" aria-hidden="true"></i>Kết quả làm bài
+                : {data.result}
               </p>
               <p>
                 {" "}
-                <i id="correct" class="fa fa-check" aria-hidden="true"></i>Do
-                chinh xac {data.accuracy} %
+                <i id="correct" class="fa fa-check" aria-hidden="true"></i>Độ
+                chính xác : {data.accuracy} %
               </p>
               <p>
-                <i class="fas fa-clock"></i>Thoi gian lam bai {data.time}
+                <i class="fas fa-clock"></i>Thời giàn làm bài : {data.time}
               </p>
             </div>
             <div className="result-item">
               <i id="correct" class="fa fa-check" aria-hidden="true"></i>
-              <p>Tra loi dung </p>
+              <p>Trả lời đúng </p>
               <p>{data.correct}</p>
             </div>
             <div className="result-item">
               <i id="wrong" class="fa fa-times" aria-hidden="true"></i>
-              <p>Tra loi sai </p>
+              <p>Trả lời sai </p>
               <p>{data.wrong}</p>
             </div>
             <div className="result-item">
               {" "}
               <i class="fa fa-minus-circle" aria-hidden="true"></i>
-              <p>Bo qua </p>
+              <p>Bỏ qua </p>
               <p>{data.skip}</p>
             </div>
             <div className="result-item">
               {" "}
               <i class="fas fa-flag-checkered"></i>
-              <p>Diem </p>
+              <p>Điểm </p>
               <p>{data.score}</p>
             </div>
           </div>
           <div className="test-result">
-            Dap An{" "}
+            Đáp án{" "}
             <span>
-              <button onClick={handleDetailResult}>Xem chi tiet dap an</button>
+              <button onClick={handleDetailResult} className="result">
+                Xem chi tiết đáp án
+              </button>
             </span>
           </div>
         </div>

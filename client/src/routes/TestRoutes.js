@@ -1,8 +1,11 @@
 import React from 'react'
 import { Route, Routes } from "react-router-dom";
-import ToeicTest from "../pages/TOEIC/ToeicTest";
-import TestList from "../pages/TestList/TestList";
-import Test from "../pages/Test/Test";
+
+
+const ToeicTest = React.lazy(() => import("../pages/TOEIC/ToeicTest"));
+const TestList = React.lazy(() => import("../pages/TestList/TestList"));
+const Test = React.lazy(() => import("../pages/Test/Test"));
+
 function TestRoutes() {
   return (
     <Routes>
