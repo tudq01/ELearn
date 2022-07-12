@@ -8,9 +8,9 @@ export default function Footer() {
           <div className="wrap">
             <div className="footer">
               <h1 id="title" class="text-white">
-                TOEIC ONLINE
+                eLearning
               </h1>
-               
+
               <div class="d-flex pt-2">
                 <a class="btn btn-outline-light btn-social" href="">
                   <i class="fab fa-twitter"></i>
@@ -28,12 +28,12 @@ export default function Footer() {
             </div>
             <div className="footer">
               <h1 id="title" class="text-white">
-                Tài nguyên
+                Resource
               </h1>
-              <a class="text-white">Lịch khai giảng</a>
-              <a class="text-white">Thư viện đề thi</a>
-              <a class="text-white">Cộng đồng</a>
-              <a class="text-white">Kho tài liệu</a>
+              <a class="text-white">Opening Schedule</a>
+              <a class="text-white">Tests</a>
+              <a class="text-white">Community</a>
+              <a class="text-white">Study</a>
               <a class="text-white">Live class</a>
             </div>
             <div className="footer">
@@ -42,7 +42,7 @@ export default function Footer() {
                 <i class="fa fa-map-marker-alt me-3"></i>123 Street, New York,
                 USA
               </a>
-              <a class="mb-2 text-white"  >
+              <a class="mb-2 text-white">
                 <i class="fa fa-phone-alt me-3"></i>+012 345 67890
               </a>
               <a class="mb-2 text-white">
@@ -51,21 +51,21 @@ export default function Footer() {
             </div>
             <div className="footer">
               <h1 id="title" class="text-white">
-                Hỗ trợ
+                Support
               </h1>
-              <a class="text-white">Hướng dẫn sử dụng</a>
-              <a class="text-white">Huướng dẫn mua hàng</a>
-              <a class="text-white">Chăm sóc khách hàng</a>
-              <a class="text-white">Phản hồi khiếu nại</a>
+              <a class="text-white">Guideline</a>
+              <a class="text-white">Your Account</a>
+              <a class="text-white">Customer Services</a>
+              <a class="text-white">Help</a>
             </div>
             <div className="footer">
               <h1 id="title" class="text-white">
-                TOEIC
+                Get to Know Us
               </h1>
-              <a class="text-white">Về chúng tôi</a>
-              <a class="text-white">Liên hệ</a>
-              <a class="text-white">Điều khoản bảo mật</a>
-              <a class="text-white">Điều khoản sử dụng</a>
+              <a class="text-white">About us</a>
+              <a class="text-white">Contact</a>
+              <a class="text-white">Policy</a>
+              <a class="text-white">Terms of use</a>
             </div>
           </div>
         </div>

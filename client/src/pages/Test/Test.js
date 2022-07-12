@@ -34,18 +34,17 @@ function Test() {
               {state.name} Test {state.test}
             </h1>
             <div class="btn-group">
-              <button id="group">Thong tin de thi</button>
-              <button id="group">Dap an/Transcript</button>
+              <button id="group">Test Info</button>
+              <button id="group">Transcript</button>
             </div>
             <p>
-              Thoi gian lam bai: {state.time} phut | {state.part} phan thi |{" "}
-              {state.numberQuestion} cau hoi
+              Time: {state.time} minutes | {state.part} parts |{" "}
+              {state.numberQuestion} questions
             </p>
             <div></div>
 
             <div class="alert alert-warning" role="alert" id="alert">
-              Sẵn sàng để bắt đầu làm full test? Để đạt được kết quả tốt nhất,
-              bạn cần dành ra {state.time} phút cho bài test này.
+              Are you ready to do full test? You should spend {state.time} minutes doing this test.
             </div>
 
             <button
@@ -54,7 +53,7 @@ function Test() {
               id="button-start"
               onClick={handleTest}
             >
-              Bat dau lam bai thi
+              Take Test
             </button>
           </div>
 

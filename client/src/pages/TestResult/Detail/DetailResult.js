@@ -63,7 +63,7 @@ function DetailResult() {
                               {" "}
                               Your choice:{" "}
                               {correct[q.question] === -1 ? (
-                                <span>Ban chua chon dap an</span>
+                                <span>You skip this question</span>
                               ) : (
                                 <span>{yourA[q.question]}</span>
                               )}
@@ -130,7 +130,7 @@ function DetailResult() {
                         {" "}
                         Your choice:{" "}
                         {correct[ques.question] === -1 ? (
-                          <span>Ban chua chon dap an</span>
+                          <span>You skip this question</span>
                         ) : (
                           <span>{yourA[ques.question]}</span>
                         )}

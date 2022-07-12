@@ -45,15 +45,15 @@ const Home = ({user}) => {
         </section>
 
         <section className="course">
-          <h1 className="info">Khóa học của bạn</h1>
+          <h1 className="info">Your Course</h1>
           <div className="course-info">
-            <p className="info">Bạn chưa đăng ký khóa học nào</p>
+            <p className="info">You have not registered any course</p>
           </div>
         </section>
 
         <section>
           <div className="result">
-            <h1 className="info">Kết quả luyện thi mới nhất</h1>
+            <h1 className="info">Test Results</h1>
 
           <div className="cards">
               {resultItem[0] ? (
@@ -78,27 +78,22 @@ const Home = ({user}) => {
               ) : (
                 <>
                   <h1 style={{ color: "red" }}>
-                    Bạn chưa thực hiện bài thi nào
+                    You have not done any test
                   </h1>
                 </>
               )}
            </div>
 
             <a id="detail" onClick={handleClick}>
-              Xem chi tiết&gt;&gt;&gt;
-
+              See more &gt;&gt;&gt;
             </a>
           </div>
         </section>
 
         <section className="course">
           <div className="online-course">
-            <h1 className="heading">Khoa học online nổi bật</h1>
-            <p>Bạn chưa đăng ký khóa học nào</p>
-            <h1>Khóa học của tôi</h1>
-            <p>Bạn chưa đăng ký khóa học nào</p>
-            <h1>Kết quả luyện thi mới nhất</h1>
-            <p>Bạn chưa đăng ký khóa học nào</p>
+            <h1 className="info">Courses</h1>
+          
           </div>
         </section>
       </div>
