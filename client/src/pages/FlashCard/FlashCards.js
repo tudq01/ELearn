@@ -4,7 +4,10 @@ import FlashcardList from '../../components/Flashcard/FlashcardList';
 import './Flashcard.css'
 import axios from 'axios'
 import { Link} from "react-router-dom";
-function App() {
+import Flashcard from '../../components/Flashcard/Flashcard';
+
+
+function FlashCards() {
   const [flashcards, setFlashcards] = useState([])
   const [categories, setCategories] = useState([])
   const [category, setCategory] = useState([])
@@ -161,8 +164,9 @@ function App() {
     </>
   );
   
-  
-  
+          }
+          
+  export default FlashCards;
 
 
 
