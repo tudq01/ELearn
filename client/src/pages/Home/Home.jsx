@@ -5,7 +5,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const Home = ({user}) => {
     const [resultItem,setItem] = useState([])
-      const history = useNavigate();
+    const history = useNavigate();
     useEffect(()=>{
        
        if(user)
@@ -22,7 +22,7 @@ const Home = ({user}) => {
              (error) => {
                console.log(error);
              }
-           );  
+           );
     },[user])
 
 
@@ -83,7 +83,7 @@ const Home = ({user}) => {
               )}
            </div>
             <a id="detail" onClick={handleClick}>
-              Xem chi tiết>>>
+              Xem chi tiết&gt;&gt;&gt;
             </a>
           </div>
         </section>

@@ -13,6 +13,7 @@ const userRoute = require("./routes/userRoutes");
 const resultRoute = require("./routes/resultRoutes");
 const questionRoute = require("./routes/questionRoutes");
 const commentRoute = require("./routes/commentRoutes");
+const courseRoute = require("./routes/courseRoutes");
 
 const Comment = require("./models/commentModel");
 
@@ -66,6 +67,8 @@ app.use("/api/questions", questionRoute);
 app.use("/api/results", resultRoute);
 
 app.use("/api/comments", commentRoute);
+
+app.use("/api/courses", courseRoute);
 
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);
