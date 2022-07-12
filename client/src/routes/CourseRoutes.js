@@ -7,7 +7,7 @@ function CourseRoutes() {
   return (
     <Routes>
       <Route path="/courses" element={<Course />} />
-      <Route path="/course-details/:courseId" element={<CourseDetails />} />
+      <Route path="/courses/:courseId" element={<CourseDetails />} />
     </Routes>
   );
 }

@@ -37,11 +37,11 @@ function Course() {
           <div className="container py-5">
               <div className="row justify-content-center">
                   <div className="col-lg-10 text-center">
-                      <h1 className="display-3 text-white animated slideInDown">Khóa học</h1>
+                      <h1 className="display-3 text-white animated slideInDown">Courses</h1>
                       <nav aria-label="breadcrumb">
                           <ol className="breadcrumb justify-content-center">
-                              <li className="breadcrumb-item"><Link className="text-white" to={`/`}>Trang chủ</Link></li>
-                              <li className="breadcrumb-item text-white active" aria-current="page">Khóa học</li>
+                              <li className="breadcrumb-item"><Link className="text-white" to={`/`}>Home</Link></li>
+                              <li className="breadcrumb-item text-white active" aria-current="page">Courses</li>
                           </ol>
                       </nav>
                   </div>
@@ -51,8 +51,8 @@ function Course() {
       <div className="container-xxl py-5">
         <div className="container">
           <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
-            <h6 class="section-title bg-white text-center text-primary px-3">Khóa học</h6>
-            <h1 class="mb-5">Các khóa học phổ biến</h1>
+            <h6 class="section-title bg-white text-center text-primary px-3">Courses</h6>
+            <h1 class="mb-5">Popular courses</h1>
           </div>
           <div className="row g-4 justify-content-center">
             {courses.map(course => (
