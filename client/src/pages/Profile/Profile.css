@@ -18,11 +18,11 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
-div.cards{
+div.cardss{
     display:flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     margin-bottom:100px;
 }
 
@@ -65,7 +65,7 @@ width:60%;
 
 }
 
-div.cards{
+div.cardss{
   border:0;
 }
 

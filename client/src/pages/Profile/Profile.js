@@ -92,7 +92,7 @@ function Profile() {
         </div>
       </div>
       
-        <div className="cards">
+        <div className="cardss">
           <div id="sort-bar">
             <select
               name="sort"

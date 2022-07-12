@@ -4,7 +4,7 @@ div .test-info{
     border:solid;
     border-radius: 5px;
     margin-bottom: 30px;
-    width:20%;
+  
 }
 
 div .test-info h1 {
@@ -81,4 +81,5 @@ div.test{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-wrap:wrap;
 }
