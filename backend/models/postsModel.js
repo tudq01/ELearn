@@ -1,10 +1,13 @@
-import mongoose from 'mongoose';
+const mongoose = require("mongoose");
 
-const PostSchema = new mongoose.Schema(
+const postSchema = mongoose.Schema(
     {
         title: {
             type: String,
             required: true,
+        },
+        categories: {
+            type: String,
         },
         content: {
             type: String,
@@ -15,11 +18,14 @@ const PostSchema = new mongoose.Schema(
             required: true,
             default: 'Internet',
         },
-        likeCount: {
-            type: Number,
-            default: 0,
+        image: {
+            type: String,
+        },
+        createAt: {
+            type: Date,
+            default: new Date(),
         }
     }
 ) 
 
-export const postsModel = mongoose.model('Tips', PostSchema);
+module.exports = Post = mongoose.model('Post', postSchema);

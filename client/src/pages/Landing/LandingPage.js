@@ -2,24 +2,8 @@ import React, { useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import TokenService from '../../utils/tokenService';
 import { useDispatch, useSelector } from "react-redux";
-import styled from 'styled-components';
+import "./Landing.css"
 // TODO : build landing
-
-
-
-const Nav = styled.nav`
-height: 80px;
-background: #3F72AF;
-color: #fff;
-display: flex;
-justify-content: space-between;
-align-items: center;
-`;
-
-const StyledLink = styled.a`
-    padding: 0rem 2rem;
-    font-size: large;
-`
 
 function LandingPage() {
     const history = useNavigate();

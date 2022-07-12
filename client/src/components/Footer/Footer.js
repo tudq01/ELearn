@@ -32,7 +32,7 @@ export default function Footer() {
             <div className="footer">
               <h1 id="title">Hỗ trợ</h1>
               <a>Hướng dẫn sử dụng</a>
-              <a>Huướng dẫn mua hàng</a>
+              <a>Hướng dẫn mua hàng</a>
               <a>Chăm sóc khách hàng</a>
               <a>Phản hồi khiếu nại</a>
             </div>

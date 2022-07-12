@@ -15,6 +15,7 @@ const questionRoute = require("./routes/questionRoutes");
 const commentRoute = require("./routes/commentRoutes");
 const courseRoute = require("./routes/courseRoutes");
 const flashcardRoute = require("./routes/flashcardRoutes")
+const postsRoute = require("./routes/postsRoutes");
 const Comment = require("./models/commentModel");
 
 dotenv.config();
@@ -64,6 +65,7 @@ app.use("/api/users", userRoute);
 app.use("/api/refreshToken", userRoute);
 app.use("/api/questions", questionRoute);
 app.use("/api/flashcard", flashcardRoute);
+app.use("/api/posts", postsRoute);
 app.use("/api/results", resultRoute);
 
 app.use("/api/comments", commentRoute);
