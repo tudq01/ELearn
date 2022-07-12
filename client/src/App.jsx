@@ -15,6 +15,7 @@ import TestRoutes from "./routes/TestRoutes";
 import ProfileRoutes from "./routes/ProfileRoutes";
 import ResultRoutes from "./routes/ResultRoutes";
 import CourseRoutes from "./routes/CourseRoutes";
+import TipsRoutes from "./routes/TipsRoutes";
 
 
 const loading = (
@@ -83,6 +84,7 @@ const App = () => {
         <TestRoutes />
         <ProfileRoutes />
         <ResultRoutes />
+        <TipsRoutes />
         <Footer></Footer>
       </React.Suspense>
     </BrowserRouter>
