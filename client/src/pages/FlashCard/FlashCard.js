@@ -1,9 +1,144 @@
-import React from 'react'
-// TODO : tan
-function FlashCard() {
-  return (
-    <div>FlashCard</div>
-  )
+import React, { useState, useEffect, useRef } from 'react';
+import FlashcardList from '../../components/Flashcard/FlashcardList';
+import './Flashcard.css'
+import axios from 'axios'
+
+function App() {
+  const [flashcards, setFlashcards] = useState([])
+  const [categories, setCategories] = useState([])
+  const [category, setCategory] = useState([])
+  const [question, setQuestion] = useState([])
+  const [answer, setAnswer] = useState([])
+  const categoryEl = useRef()
+
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:5000/api/flashcard/category')
+      .then(res => {
+        setCategories(res.data)
+      })
+  }, [])
+
+  useEffect(() => {
+    axios
+      .post('http://localhost:5000/api/flashcard',
+      {
+        category: "bird",
+        question: "Bird",
+        answer:"chim"
+
+      })
+      .then(res => {
+        console.log(res)
+      })
+  }, [])
+ 
+  
+  function decodeString(str) {
+    const textArea = document.createElement('textarea')
+    textArea.innerHTML= str
+    return textArea.value
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    axios
+    .get('http://localhost:5000/api/flashcard'.concat("/").concat(categoryEl.current.value), {
+      params: {
+        
+        category: categoryEl.current.value
+      }
+    })
+    .then(res => {
+      setFlashcards(res.data.map((questionItem, index) => {
+          
+          return {
+            id: `${index}-${Date.now()}`,
+            question: decodeString(questionItem.question),
+            answer: decodeString(questionItem.answer)
+          }
+        }))
+    })
+  }
+  //const cates = [... new Set(categories.map(category => category.category))]
+  //console.log(cates)
+  
+  function onSubmit(e) {
+    //e.preventDefault()
+    const userObject = {
+        category,
+        question,
+        answer
+    };
+    axios.post('http://localhost:5000/api/flashcard/add', userObject)
+        .then((res) => {
+          alert("Create flashcard successfully");
+            console.log(res)
+        }).catch((error) => {
+            console.log(error)
+        });
+        
+   
 }
 
-export default FlashCard
+
+
+ 
+  return (
+    <>
+      <div className='row'>
+      <div className='column left'>
+      <form  onSubmit={handleSubmit}>
+        <div className="flashcard-form-group">
+          <label htmlFor="category">Category</label>
+          <select id="category" ref={categoryEl}>
+          {categories.map(category => {
+              return <option value={category} key={category}>{category}</option>
+            })}
+          </select>
+          <button className="flashcard-btn">Generate Flashcard</button>
+        </div>
+      </form>
+      </div>
+      
+      <div className='column middle'>       
+        <div className="flashcard-container">
+        <FlashcardList flashcards={flashcards} />
+        </div>
+      </div>
+      
+      <div className='column right'>
+             
+                <form onSubmit={onSubmit}>
+                    <div className="flashcard-form-group">
+                        <label>Add Flahscard Category</label>
+                        <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} className="flashcard-input" required/>
+                    </div>
+                    <div className="flashcard-form-group">
+                        <label>Add Flahscard Question</label>
+                        <input type="text" value={question} onChange={(e) => setQuestion(e.target.value)} className="flashcard-input"  required/>
+                    </div>
+                    <div className="flashcard-form-group">
+                        <label>Add Flashcar Answer</label>
+                        <input type="text" value={answer} onChange={(e) => setAnswer(e.target.value)} className="flashcard-input" required/>
+                    </div>
+                    <div className="flashcard-form-group">
+                    <button className="flashcard-btn">Create Flashcard</button>
+                    </div>
+                </form>
+                </div>
+                
+         
+      </div>
+    </>
+  );
+  
+  
+  
+
+
+
+}
+
+export default App;
