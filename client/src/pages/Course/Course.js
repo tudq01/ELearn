@@ -31,12 +31,17 @@ function Course() {
   }
 
   return (
-    <section>
-      <h1>Courses</h1>
-      <div className="row g-4 justify-content-center">
-        {courses.map(course => (
-          <CourseItem key={course._id} course={ course }/>
-        ))}
+    <section className="container-xxl py-5">
+      <div className="container">
+        <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+          <h6 class="section-title bg-white text-center text-primary px-3">Courses</h6>
+          <h1 class="mb-5">Popular Courses</h1>
+        </div>
+        <div className="row g-4 justify-content-center">
+          {courses.map(course => (
+            <CourseItem key={course._id} course={ course }/>
+          ))}
+        </div>
       </div>
     </section>
   )
