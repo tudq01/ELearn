@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Message } from '../../components/shared';
-import TokenService from "../../service/tokenService"
+import TokenService from "../../utils/tokenService"
 import "./CourseDetails.css";
 import axios from 'axios';
 
