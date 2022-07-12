@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
-import TokenService from '../../service/tokenService';
+import TokenService from '../../utils/tokenService';
 import { useDispatch, useSelector } from "react-redux";
 import styled from 'styled-components';
 // TODO : build landing

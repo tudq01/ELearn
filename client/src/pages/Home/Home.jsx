@@ -6,7 +6,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const Home = ({user}) => {
     const [resultItem,setItem] = useState([])
-      const history = useNavigate();
+    const history = useNavigate();
     useEffect(()=>{
        
        if(user)
@@ -23,7 +23,7 @@ const Home = ({user}) => {
              (error) => {
                console.log(error);
              }
-           );  
+           );
     },[user])
 
 
@@ -41,7 +41,7 @@ const Home = ({user}) => {
         </div>  */
       <div className='body'>
         <section className="home">
-          <h1 className="info">Xin chào {user && user.name}</h1>
+          <h1 className="info">Welcome {user && user.name}</h1>
         </section>
 
         <section className="course">
@@ -83,8 +83,10 @@ const Home = ({user}) => {
                 </>
               )}
            </div>
-            <a id="detail" className='button-16' onClick={handleClick}>
-              Xem chi tiết tất cả bài thi
+
+            <a id="detail" onClick={handleClick}>
+              Xem chi tiết&gt;&gt;&gt;
+
             </a>
           </div>
         </section>

@@ -13,7 +13,8 @@ const userRoute = require("./routes/userRoutes");
 const resultRoute = require("./routes/resultRoutes");
 const questionRoute = require("./routes/questionRoutes");
 const commentRoute = require("./routes/commentRoutes");
-
+const courseRoute = require("./routes/courseRoutes");
+const flashcardRoute = require("./routes/flashcardRoutes")
 const Comment = require("./models/commentModel");
 
 dotenv.config();
@@ -62,10 +63,12 @@ app.use("/api/test", testRoute);
 app.use("/api/users", userRoute);
 app.use("/api/refreshToken", userRoute);
 app.use("/api/questions", questionRoute);
-
+app.use("/api/flashcard", flashcardRoute);
 app.use("/api/results", resultRoute);
 
 app.use("/api/comments", commentRoute);
+
+app.use("/api/courses", courseRoute);
 
 const http = require("http").createServer(app);
 const io = require("socket.io")(http);

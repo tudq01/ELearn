@@ -1,7 +1,7 @@
 import React from "react";
 import "./CardBlog.css";
 import { Link } from "react-router-dom";
-import TokenService from "../../service/tokenService";
+import TokenService from "../../utils/tokenService";
 function CardBlog(props) {
   const handleClick = () => {
     if (!TokenService.getuserInfo()) {

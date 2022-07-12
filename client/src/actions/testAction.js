@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as types from '../constant/Test/testConstant';
-import TokenService from '../service/tokenService'
-import api from "../api/axios"
+import TokenService from '../utils/tokenService'
+import api from "../config/axios"
 export const listTests = () => async (dispatch) => {
     
     try {

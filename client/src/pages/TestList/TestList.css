@@ -23,7 +23,8 @@ div .container #card {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 20%;;
+  width: 20%;
+  height:5%;
   flex-wrap: wrap;
   box-shadow: 0px 0px 8px 4px rgba(0,0,0,0.15); 
   
@@ -77,11 +78,14 @@ div .container #card{
 
 }
 
+
+
+
 .btn-group button {
   background-color: #04aa6d; /* Green background */
   border: 1px solid green; /* Green border */
   color: white; /* White text */
-  padding: 10px 24px; /* Some padding */
+  padding: 10px 10px; /* Some padding */
   cursor: pointer; /* Pointer/hand icon */
   float: left; /* Float the buttons side by side */
   margin-left: 25px;
@@ -111,17 +115,17 @@ div .container #card{
 }
 
 
-#result-but {
- border-radius: 30px;
+#profile {
+ border-radius: 10px;
   margin-bottom: 30px;
   background-color: white;
   color:black;
-  margin-right: 20px;
-  padding: 10px;
+  padding: 5px;
+  margin: 10px 10px;
   box-shadow: 0px 0px 8px 4px rgba(0,0,0,0.2);
 }
 
-#result-but:hover {
+#profile:hover {
   color: white;
   background-color: var(--green);
 }
@@ -134,3 +138,11 @@ img.user-avatar{
    margin-top: 10px;
   border-radius: 50px;
  }
+
+
+@media screen and (max-width: 900px) {
+  .btn-group button {
+    padding: 8px 5px;
+    }
+}
+
