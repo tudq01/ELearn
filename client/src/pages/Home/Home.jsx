@@ -1,10 +1,13 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect,useState } from "react"
 import CardItem from "../../components/CardItem/CardItem"
+import CourseItem from "../../components/CourseItem/CourseItem";
 import "./Home.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const Home = ({user}) => {
     const [resultItem,setItem] = useState([])
+    const [enrolledCourses, setEnrolledCourses] = useState([]);
     const history = useNavigate();
     useEffect(()=>{
        
@@ -17,6 +20,17 @@ const Home = ({user}) => {
              (response) => {
              //  response.data.result = getDate(response.data.result);
                setItem(response.data.result);
+               console.log(response);
+             },
+             (error) => {
+               console.log(error);
+             }
+           );
+         axios
+           .get("http://localhost:5000/api/courses/by-user/".concat(user._id))
+           .then(
+             (response) => {
+               setEnrolledCourses(response.data);
                console.log(response);
              },
              (error) => {
@@ -38,7 +52,7 @@ const Home = ({user}) => {
                 <Card key={post.id} post={post}/>
             ))}
         </div>  */
-      <>
+      <div className='body'>
         <section className="home">
           <h1 className="info">Welcome {user && user.name}</h1>
         </section>
@@ -46,7 +60,11 @@ const Home = ({user}) => {
         <section className="course">
           <h1 className="info">Khóa học của bạn</h1>
           <div className="course-info">
-            <p className="info">Bạn chưa đăng ký khóa học nào</p>
+            {enrolledCourses[0] ? (
+              enrolledCourses.map((course) => (
+                <CourseItem course={ course } />
+              ))
+            ) : <p className="info">Bạn chưa đăng ký khóa học nào</p>}
           </div>
         </section>
 
@@ -82,8 +100,10 @@ const Home = ({user}) => {
                 </>
               )}
            </div>
+
             <a id="detail" onClick={handleClick}>
               Xem chi tiết&gt;&gt;&gt;
+
             </a>
           </div>
         </section>
@@ -98,7 +118,7 @@ const Home = ({user}) => {
             <p>Bạn chưa đăng ký khóa học nào</p>
           </div>
         </section>
-      </>
+      </div>
     );
 }
 
