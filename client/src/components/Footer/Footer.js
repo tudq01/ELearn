@@ -4,44 +4,68 @@ export default function Footer() {
   return (
     <>
       <footer>
-        <div className="footer-container">
+        <div className="footer-container" class="bg-dark">
           <div className="wrap">
             <div className="footer">
-              <h1 id="title">TOEIC ONLINE</h1>
+              <h1 id="title" class="text-white">
+                eLearning
+              </h1>
 
-              <i className="fab fa-facebook"></i>
-              <i className="fab fa-instagram"></i>
-              <i className="fab fa-twitter"></i>
-              <i className="fab fa-linkedin"></i>
-              <i className="fab fa-tiktok"></i>
+              <div class="d-flex pt-2">
+                <a class="btn btn-outline-light btn-social" href="">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a class="btn btn-outline-light btn-social" href="">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a class="btn btn-outline-light btn-social" href="">
+                  <i class="fab fa-youtube"></i>
+                </a>
+                <a class="btn btn-outline-light btn-social" href="">
+                  <i class="fab fa-linkedin-in"></i>
+                </a>
+              </div>
             </div>
             <div className="footer">
-              <h1 id="title">Tài nguyên</h1>
-              <a>Lịch khai giảng</a>
-              <a>Thư viện đề thi</a>
-              <a>Cộng đồng</a>
-              <a>Kho tài liệu</a>
-              <a>Live class</a>
+              <h1 id="title" class="text-white">
+                Resource
+              </h1>
+              <a class="text-white">Opening Schedule</a>
+              <a class="text-white">Tests</a>
+              <a class="text-white">Community</a>
+              <a class="text-white">Study</a>
+              <a class="text-white">Live class</a>
             </div>
             <div className="footer">
-              <h1 id="title">Thông tin</h1>
-              <a>+123-456-7890</a>
-              <a>+111-222-3333</a>
-              <a>shaikhanas@gmail.com</a>
+              <h1 class="text-white mb-3">Contact</h1>
+              <a class="mb-2 text-white">
+                <i class="fa fa-map-marker-alt me-3"></i>123 Street, New York,
+                USA
+              </a>
+              <a class="mb-2 text-white">
+                <i class="fa fa-phone-alt me-3"></i>+012 345 67890
+              </a>
+              <a class="mb-2 text-white">
+                <i class="fa fa-envelope me-3"></i>info@example.com
+              </a>
             </div>
             <div className="footer">
-              <h1 id="title">Hỗ trợ</h1>
-              <a>Hướng dẫn sử dụng</a>
-              <a>Hướng dẫn mua hàng</a>
-              <a>Chăm sóc khách hàng</a>
-              <a>Phản hồi khiếu nại</a>
+              <h1 id="title" class="text-white">
+                Support
+              </h1>
+              <a class="text-white">Guideline</a>
+              <a class="text-white">Your Account</a>
+              <a class="text-white">Customer Services</a>
+              <a class="text-white">Help</a>
             </div>
             <div className="footer">
-              <h1 id="title">TOEIC</h1>
-              <a>Về chúng tôi</a>
-              <a>Liên hệ</a>
-              <a>Điều khoản bảo mật</a>
-              <a>Điều khoản sử dụng</a>
+              <h1 id="title" class="text-white">
+                Get to Know Us
+              </h1>
+              <a class="text-white">About us</a>
+              <a class="text-white">Contact</a>
+              <a class="text-white">Policy</a>
+              <a class="text-white">Terms of use</a>
             </div>
           </div>
         </div>

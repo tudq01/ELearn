@@ -19,7 +19,7 @@ div .blog-item h1 {
 }
 
 button {
-  margin-left: 25px;
+  margin-left: 10px;
   padding: 4px;
   color: white;
   background-color: #6495ed;
@@ -28,4 +28,9 @@ button {
 }
 p {
   margin-top: 20px;
+}
+
+#blog{
+  margin-right: 20px;
+  margin-bottom: 20px;
 }

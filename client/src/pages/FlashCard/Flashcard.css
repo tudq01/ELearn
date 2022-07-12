@@ -139,3 +139,13 @@
 .flashcard-option:first-child {
   margin-top: 0;
 }
+
+div.row{
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+#cat{
+  font-size:26px;
+}

@@ -14,20 +14,20 @@ function CardItem({date,time,result,score,name,id}) {
       <h1>{name}</h1>
       <p className="cards">
         
-        <i class="far fa-calendar-alt"></i> Ngày làm bài: {date}
+        <i class="far fa-calendar-alt"></i> Date: {date}
       </p>
       <p className="cards">
         
-        <i class="far fa-clock"></i> Thời gian hoàn thành: {time}
+        <i class="far fa-clock"></i> Time Finish: {time}
       </p>
       <p className="cards">
-        <i class="fa fa-list-alt"></i> Kết quả:{result}
+        <i class="fa fa-list-alt"></i> Result:{result}
       </p>
       <p className="cards">
-        <i class="fas fa-flag-checkered"></i> Điểm:{score}
+        <i class="fas fa-flag-checkered"></i> Score:{score}
       </p>
       <button id="butt" onClick={handleClick}>
-        Xem chi tiet
+        View details
       </button>
     </div>
   );

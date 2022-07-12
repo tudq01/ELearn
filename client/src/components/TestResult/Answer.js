@@ -25,14 +25,14 @@ function Answer({resultId}) {
   return (
     <div className="content">
       
-        <h1>Kết quả</h1>
+        <h1>Your Answer</h1>
         <div className="answer">
           {userAnswer &&
             userAnswer.map((ans, index) => (
               <>
               <div className="answer-item">
                 <h1 id="light">{index + 1}</h1>
-                {ans ? <span>{ans}</span> : <span>Bạn chưa chọn đáp án</span>}
+                {ans ? <span>{ans}</span> : <span>You skip this question</span>}
                 {correct[index] === 0 && (
                   <i id="wrong" class="fa fa-times" aria-hidden="true"></i>
                 )}
@@ -44,7 +44,7 @@ function Answer({resultId}) {
                 {correct[index] === 1 && (
                   <i id="correct" class="fa fa-check" aria-hidden="true"></i>
                 )}
-                {<p>Đáp án đúng : {keyAnswer[index]}</p>}
+                {<p>Correct  Answer : {keyAnswer[index]}</p>}
                 </div>
               </>
             ))}
