@@ -38,26 +38,23 @@ exports.getCourseById = asyncHandler(async (req, res) => {
 
 /**
  * Enroll course by user id
- * @route   POST /api/courses/enrollment/:courseId
+ * @route   POST /api/courses/enroll/:courseId
  * @access  Public
  */
 exports.enrollCourse = asyncHandler(async (req, res) => {
     const course = mongoose.Types.ObjectId(req.params.courseId);
     const { userId } = req.body;
 
-    const result = await User.findByIdAndUpdate(
+    const courseResult = await Course.findByIdAndUpdate(
+        req.params.courseId,
+        { $push: { students: mongoose.Types.ObjectId(userId) } });
+
+    const userResult = await User.findByIdAndUpdate(
         userId, 
-        { $push: { enrolledCourses: course } }, 
-        function(error, success){
-            if (error){
-                console.log(error);
-            } else {
-                console.log(success);
-            }
-        });
+        { $push: { enrolledCourses: course } });
     
-    if (result){
-        res.status(200).json(result);
+    if (userResult && courseResult){
+        res.status(200);
     } else {
         res.status(400).json( { message: "Fail to save" });
         throw new Error("Fail to save");

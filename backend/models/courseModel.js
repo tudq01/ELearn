@@ -28,6 +28,12 @@ const courseSchema = mongoose.Schema({
     price: {
         type: Number
     },
+    students: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ]
 }, {
     timestamps: true,
 });
