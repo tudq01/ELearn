@@ -106,8 +106,8 @@ function Profile() {
                 }
               }}
             >
-              <option value="dec">Mới nhất</option>
-              <option value="inc">Cũ nhất</option>
+              <option value="dec">Newest</option>
+              <option value="inc">Oldest</option>
             </select>
           </div>
           <Result
