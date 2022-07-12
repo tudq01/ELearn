@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect,useState } from "react"
 import CardItem from "../../components/CardItem/CardItem"
 import "./Home.css"
@@ -38,7 +39,7 @@ const Home = ({user}) => {
                 <Card key={post.id} post={post}/>
             ))}
         </div>  */
-      <>
+      <div className='body'>
         <section className="home">
           <h1 className="info">Welcome {user && user.name}</h1>
         </section>
@@ -82,8 +83,10 @@ const Home = ({user}) => {
                 </>
               )}
            </div>
+
             <a id="detail" onClick={handleClick}>
               Xem chi tiết&gt;&gt;&gt;
+
             </a>
           </div>
         </section>
@@ -98,7 +101,7 @@ const Home = ({user}) => {
             <p>Bạn chưa đăng ký khóa học nào</p>
           </div>
         </section>
-      </>
+      </div>
     );
 }
 

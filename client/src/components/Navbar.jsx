@@ -80,17 +80,19 @@ const Navbar = ({user}) => {
               </Link>
             </li>
             {user ? (
-              <li className="nav-item">
+              <li className="nav-item dropdown">
+                  <img id="userPic" src={user.photo} className="avatar" />
+                  {user.name}
+                 <div className="dropdown-content">
                 <Link
                   to="/"
                   activeClassName="active"
                   className="nav-links"
                   onClick={logoutHandler}
                 >
-                  <img id="userPic" src={user.photo} className="avatar" />
-                  {user.name}
-                  <span id="logout">Logout</span>
+                  <span id="logout">Logout</span>          
                 </Link>
+                </div>
               </li>
             ) : (
               <li className="nav-item">
