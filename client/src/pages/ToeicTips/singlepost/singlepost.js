@@ -4,14 +4,16 @@ import axios from 'axios';
 import "./singlepost.css"
 
 export default function SinglePost() {
-  const { postId } = useParams();
-  const [post, setPost] = useState([]);
 
-  console.log(postId);
+  const { postsId } = useParams();
+    const [post, setPost] = useState([]);
+
+    console.log(postsId);
+
 
     useEffect(() => {
       axios
-          .get(`http://localhost:5000/api/posts/${postId}`)
+          .get(`http://localhost:5000/api/posts/${postsId}`)
           .then(
               (response) => {
                   console.log(response);

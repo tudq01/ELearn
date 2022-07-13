@@ -15,11 +15,11 @@ function Result({resultItem,loading,status}) {
   return (
     <table>
       <tr>
-        <th>De thi</th>
-        <th>Ngay lam bai</th>
-        <th>Thoi gian</th>
-        <th>Ket qua</th>
-        <th>Diem</th>
+        <th>Test</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Result</th>
+        <th>Score</th>
         <th></th>
       </tr>
       {resultItem.map((item) => (
@@ -42,7 +42,7 @@ function Result({resultItem,loading,status}) {
                   });
                 }}
               >
-                Xem chi tiet
+                View details
               </button>
             </td>
           </tr>

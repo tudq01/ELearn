@@ -92,7 +92,7 @@ function Profile() {
         </div>
       </div>
       
-        <div className="cards">
+        <div className="cardss">
           <div id="sort-bar">
             <select
               name="sort"
@@ -106,8 +106,8 @@ function Profile() {
                 }
               }}
             >
-              <option value="dec">Mới nhất</option>
-              <option value="inc">Cũ nhất</option>
+              <option value="dec">Newest</option>
+              <option value="inc">Oldest</option>
             </select>
           </div>
           <Result

@@ -18,7 +18,7 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
-div.cards{
+div.cardss{
     display:flex;
     justify-content: center;
     align-items: center;
@@ -65,6 +65,16 @@ width:60%;
 
 }
 
-div.cards{
+div.cardss{
   border:0;
+}
+
+
+@media only screen and (max-width: 900px) {
+    div.cards{
+        flex-direction: column;
+        
+    }
+
+ 
 }
