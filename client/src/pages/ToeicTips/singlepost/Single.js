@@ -1,11 +1,11 @@
 import React from 'react'
-import Posts from '../posts/posts'
 import Sidebar from '../sidebar/sidebar'
-import SinglePost from './singlepost'
+import SinglePost from '../../../components/SinglePost/SinglePost'
+import "./single.css"
 
 export default function Single() {
   return (
-    <div>
+    <div className="single">
         <SinglePost />
         <Sidebar />
     </div>

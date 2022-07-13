@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import "./singlepost.css"
 
 export default function SinglePost() {
   const { postId } = useParams();
-    const [post, setPost] = useState([]);
+  const [post, setPost] = useState([]);
 
-    console.log(postId);
+  console.log(postId);
 
     useEffect(() => {
       axios
@@ -23,24 +24,27 @@ export default function SinglePost() {
   }, []);
 
   return (
-    <div className='singlePost'>
-        <div className="singlePostWrapper">
-            <h1 className='singlePostTitle'>
-                {post.title}
-            </h1>
-            <img className='singlePostImg'
-            src={post.image}
-            alt=""
-            />
-            <div className="singlePostInfo">
-              <span  className="singlePostAuthor">{post.author}</span>
-              <span className="singlePostDate">{post.createAt}</span>
-            </div>
-            <div className="singlePostContent">
-            {post.content}
-            </div>
-
-        </div>
+    <div>
+      {post.title}
     </div>
+    // <div className='singlePost'>
+    //     <div className="singlePostWrapper">
+    //         <h1 className='singlePostTitle'>
+    //             {post.title}
+    //         </h1>
+    //         <img className='singlePostImg'
+    //         src={post.image}
+    //         alt=""
+    //         />
+    //         <div className="singlePostInfo">
+    //           <span  className="singlePostAuthor">{post.author}</span>
+    //           <span className="singlePostDate">{post.createAt}</span>
+    //         </div>
+    //         <div className="singlePostContent">
+    //         {post.content}
+    //         </div>
+
+    //     </div>
+    // </div>
   )
 }
