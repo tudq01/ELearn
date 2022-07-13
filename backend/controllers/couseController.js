@@ -10,7 +10,7 @@ const mongoose = require("mongoose");
  * @access  Public
  */
 exports.getCourses = asyncHandler(async (req, res) => {
-    const courses = await Course.find().select('-description -lessons'); // Leave description for faster loading time
+    const courses = await Course.find().select('-description'); // Leave description for faster loading time
 
     if (courses) {
         res.status(200).json(courses);

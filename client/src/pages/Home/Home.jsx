@@ -1,11 +1,13 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import { useEffect,useState } from "react"
 import CardItem from "../../components/CardItem/CardItem"
+import CourseItem from "../../components/CourseItem/CourseItem";
 import "./Home.css"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 const Home = ({user}) => {
     const [resultItem,setItem] = useState([])
+    const [enrolledCourses, setEnrolledCourses] = useState([]);
     const history = useNavigate();
     useEffect(()=>{
        
@@ -18,6 +20,17 @@ const Home = ({user}) => {
              (response) => {
              //  response.data.result = getDate(response.data.result);
                setItem(response.data.result);
+               console.log(response);
+             },
+             (error) => {
+               console.log(error);
+             }
+           );
+         axios
+           .get("http://localhost:5000/api/courses/by-user/".concat(user._id))
+           .then(
+             (response) => {
+               setEnrolledCourses(response.data);
                console.log(response);
              },
              (error) => {
@@ -45,15 +58,19 @@ const Home = ({user}) => {
         </section>
 
         <section className="course">
-          <h1 className="info">Khóa học của bạn</h1>
+          <h1 className="info">Your Course</h1>
           <div className="course-info">
-            <p className="info">Bạn chưa đăng ký khóa học nào</p>
+            {enrolledCourses[0] ? (
+              enrolledCourses.map((course) => (
+                <CourseItem course={ course } />
+              ))
+            ) : <p className="info">Bạn chưa đăng ký khóa học nào</p>}
           </div>
         </section>
 
         <section>
           <div className="result">
-            <h1 className="info">Kết quả luyện thi mới nhất</h1>
+            <h1 className="info">Test Results</h1>
 
           <div className="cards">
               {resultItem[0] ? (
@@ -78,27 +95,22 @@ const Home = ({user}) => {
               ) : (
                 <>
                   <h1 style={{ color: "red" }}>
-                    Bạn chưa thực hiện bài thi nào
+                    You have not done any test
                   </h1>
                 </>
               )}
            </div>
 
             <a id="detail" onClick={handleClick}>
-              Xem chi tiết&gt;&gt;&gt;
-
+              See more &gt;&gt;&gt;
             </a>
           </div>
         </section>
 
         <section className="course">
           <div className="online-course">
-            <h1 className="heading">Khoa học online nổi bật</h1>
-            <p>Bạn chưa đăng ký khóa học nào</p>
-            <h1>Khóa học của tôi</h1>
-            <p>Bạn chưa đăng ký khóa học nào</p>
-            <h1>Kết quả luyện thi mới nhất</h1>
-            <p>Bạn chưa đăng ký khóa học nào</p>
+            <h1 className="info">Courses</h1>
+          
           </div>
         </section>
       </div>

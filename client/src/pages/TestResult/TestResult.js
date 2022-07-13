@@ -56,59 +56,58 @@ function TestResult(props) {
           <div className="head-content">
             <h1>
               {" "}
-              Kết quả thi : {data.testResult &&
+              Result: {data.testResult &&
                 data.testResult[0].name} Test{" "}
               {data.testResult && data.testResult[0].test}
             </h1>
-            <button className="result"> Xem đáp án </button>
+            <button className="result"> View your answers </button>
             <button onClick={handleAgain} className="result">
               {" "}
-              Làm lại bài thi{" "}
+              Retry{" "}
             </button>
           </div>
           <div className="result-content">
             <div className="result-item">
               <p>
-                <i class="fa fa-list-alt" aria-hidden="true"></i>Kết quả làm bài
+                <i class="fa fa-list-alt" aria-hidden="true"></i>Result
                 : {data.result}
               </p>
               <p>
                 {" "}
-                <i id="correct" class="fa fa-check" aria-hidden="true"></i>Độ
-                chính xác : {data.accuracy} %
+                <i id="correct" class="fa fa-check" aria-hidden="true"></i>Accuracy : {data.accuracy} %
               </p>
               <p>
-                <i class="fas fa-clock"></i>Thời giàn làm bài : {data.time}
+                <i class="fas fa-clock"></i>Time : {data.time}
               </p>
             </div>
             <div className="result-item">
               <i id="correct" class="fa fa-check" aria-hidden="true"></i>
-              <p>Trả lời đúng </p>
+              <p>Correct</p>
               <p>{data.correct}</p>
             </div>
             <div className="result-item">
               <i id="wrong" class="fa fa-times" aria-hidden="true"></i>
-              <p>Trả lời sai </p>
+              <p>Wrong </p>
               <p>{data.wrong}</p>
             </div>
             <div className="result-item">
               {" "}
               <i class="fa fa-minus-circle" aria-hidden="true"></i>
-              <p>Bỏ qua </p>
+              <p>Skip </p>
               <p>{data.skip}</p>
             </div>
             <div className="result-item">
               {" "}
               <i class="fas fa-flag-checkered"></i>
-              <p>Điểm </p>
+              <p>Score </p>
               <p>{data.score}</p>
             </div>
           </div>
           <div className="test-result">
-            Đáp án{" "}
+            Key{" "}
             <span>
               <button onClick={handleDetailResult} className="result">
-                Xem chi tiết đáp án
+                View details
               </button>
             </span>
           </div>

@@ -129,8 +129,8 @@ function ToeicTest() {
         <h1>
           {state.current.name} Test {state.current.test}
         </h1>
-        <h3>Bo de thi: {state.current.name}</h3>
-        <button onClick={handleExit}>Thoat</button>
+        
+        <button onClick={handleExit}>Exit</button>
       </div>
 
       <div className="container">
@@ -164,7 +164,7 @@ function ToeicTest() {
                             <p>
                               <span id="light">{q.question}</span>{" "}
                               {q.content && <em>{q.content}</em>}
-                              <p> {q.answer}</p>
+                              
                             </p>
 
                             {q.option.map((op) => (
@@ -203,7 +203,7 @@ function ToeicTest() {
                         {ques.upload && <img src={ques.upload} />}
                         <br></br>
                         <span id="light">{ques.question}</span>{" "}
-                        <p> {ques.answer}</p>
+                        
                         <em>{ques.content}</em>
                         
                         <br></br>
@@ -248,7 +248,7 @@ function ToeicTest() {
 
         <div className="question-bar">
           <div className="time">
-            <h2>Thoi gian con lai</h2>
+            <h2>Time Remaining</h2>
             <h2>
               {minutes < 10 ? "0" + minutes : minutes} :{" "}
               {seconds < 10 ? "0" + seconds : seconds}
@@ -265,7 +265,7 @@ function ToeicTest() {
           </div>
 
           <button id="turn-in" type="submit" onClick={handleSubmit}>
-            Nop bai{" "}
+            Submit{" "}
           </button>
         </div>
       </div>

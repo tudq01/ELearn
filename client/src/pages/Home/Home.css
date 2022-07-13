@@ -14,13 +14,25 @@ div .online-course h1.heading{
     font-style: bold;
 }
 
-
+div.course-info{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-around;
+    align-items:center;
+    margin-bottom:20px;
+}
 
 @media only screen and (max-width: 900px) {
     div.cards{
         flex-direction: column;
         
     }
+    div.course-info{
+   
+    flex-direction:column;
+   
+}
+ 
 }
 
 #detail{

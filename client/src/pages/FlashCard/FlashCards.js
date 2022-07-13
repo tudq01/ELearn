@@ -121,7 +121,7 @@ function FlashCards() {
       <div className='column left'>
       <form  onSubmit={handleSubmit}>
         <div className="flashcard-form-group">
-          <label htmlFor="category">Category</label>
+          <label htmlFor="category" id='cat'>Category</label>
           <select id="category" ref={categoryEl}>
           {categories.map(category => {
               return <option value={category} key={category}>{category}</option>

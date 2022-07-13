@@ -17,9 +17,9 @@ function LandingPage() {
 
   return (
     <div className='Hero'>
-          <h3 className='Heading'>Welcome to TOEIC<i class="fa fa-code" aria-hidden="true"></i></h3>
+          <h3 className='Heading'>eLearning<i class="fa fa-code" aria-hidden="true"></i></h3>
           <p className='TextStyled'>
-          TOEIC<i class="fa fa-code" aria-hidden="true"></i> is designed to help you practice and improve your TOEIC skills to well prepare for the exam. The website assists you in improving Online TOEIC Test skills in particular and English skills in general through a variety of grammar and vocabulary exercises. Besides, the website provides various functions such as reviewing the test has done, some tips and tricks, and flashcard to learn vocabolary.
+          eLearning<i class="fa fa-code" aria-hidden="true"></i> is designed to help you practice and improve your TOEIC skills to well prepare for the exam. The website assists you in improving Online TOEIC Test skills in particular and English skills in general through a variety of grammar and vocabulary exercises. Besides, the website provides various functions such as reviewing the test has done, some tips and tricks, and flashcard to learn vocabolary.
           </p>
     </div> 
   );

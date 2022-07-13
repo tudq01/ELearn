@@ -34,8 +34,6 @@ function SearchBar(props) {
             let t = tests.filter((value, index, self) => self.findIndex((m) => m.tag === value.tag) === index)
             let result = t.map(a => a.tag)
             setTestYear(result)
-        }else{
-          props.setTest(tests);
         }
     }, [tests, props,click]);
 
@@ -51,10 +49,10 @@ function SearchBar(props) {
     }
 
     const handleGetAll = () => {
-        setTestYear([]);
-        dispatch(getAllTest());
-        console.log(tests);
-        setClick(true);
+       setTestYear([]);
+       // dispatch(getAllTest());
+        //console.log(tests);
+       // setClick(true);
         
     }
 
@@ -63,9 +61,9 @@ function SearchBar(props) {
 
     return (
         <div className="search">
-            <h1>Thu vien de thi</h1>
+            <h1>Exam</h1>
             <div className="btn-group">
-                <button onClick={handleGetAll} >Tat ca</button>
+                <button onClick={handleGetAll} >All</button>
                 <button onClick={getToeicTest}>TOEIC</button>
                 <button onClick={getIeltsTest}>IELTS</button>
 

@@ -29,21 +29,21 @@ instance.interceptors.response.use(
         const originalConfig = err.config;
         if (originalConfig.url !== "/users/login" && err.response) {
             // Access Token was expired
-            if (err.response.status === 402 && !originalConfig._retry) {
-                originalConfig._retry = true;
-                try {
-                    const rs = await instance.post("/refreshToken/token", {
-                        refreshToken: TokenService.getLocalRefreshToken(),
-                    });
-                    const { accessToken } = rs.data;
-                    TokenService.updateLocalAccessToken(accessToken);
-                    return instance(originalConfig);
-                } catch (_error) {
-                    if (_error.response && _error.response.data) {
-                        return Promise.reject(_error.response.data);
-                    }
-                    return Promise.reject(_error);
+            if (err.response.status === 401 && err.response.data) {
+              originalConfig._retry = true;
+              try {
+                const rs = await instance.post("/refreshToken/token", {
+                  refreshToken: TokenService.getLocalRefreshToken(),
+                });
+                const { accessToken } = rs.data;
+                TokenService.updateLocalAccessToken(accessToken);
+                return instance(originalConfig);
+              } catch (_error) {
+                if (_error.response && _error.response.data) {
+                  return Promise.reject(_error.response.data);
                 }
+                return Promise.reject(_error);
+              }
             }
             if (err.response.status === 403 && err.response.data) {
                 //login again
