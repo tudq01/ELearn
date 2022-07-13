@@ -98,6 +98,7 @@ function ToeicTest() {
     }
 
     const key = getKeyArray(userChoice, keyAnswer.current);
+    console.log(seconds);
     axios
       .post("http://localhost:5000/api/results/" + state.current._id, {
         user: TokenService.getuserInfo()._id,
