@@ -86,7 +86,7 @@ function ToeicTest() {
     history("/");
   };
 
-  const handleSubmit = useCallback(() => {
+  const handleSubmit = () => {
     const userChoice = [];
     for (let i = 1; i <= 200; i++) {
       var s = document.querySelector(
@@ -120,7 +120,7 @@ function ToeicTest() {
 
     const time = getFinishTime(minutes, seconds, state.current.time);
     console.log(time);
-  },[state]);
+  };
    if(lists.current.length!=7){
     return <h1>Loading ...</h1>
    }
