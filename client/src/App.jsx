@@ -1,11 +1,9 @@
 import Navbar from "./components/Navbar";
-import "./app.css";
+import "./app.scss";
 
 import { BrowserRouter } from "react-router-dom";
 import React,{ useEffect } from "react";
 import Footer from "./components/Footer/Footer"
-
-
 import { useSelector,useDispatch } from 'react-redux';
 import TokenService from "./utils/tokenService";
 import * as types from './constant/User/userConstants'
@@ -18,18 +16,21 @@ import CourseRoutes from "./routes/CourseRoutes";
 import TipsRoutes from "./routes/TipsRoutes";
 
 
+
 const loading = (
   <div className="pt-3 text-center">
     <div className="sk-spinner sk-spinner-pulse"></div>
   </div>
 );
 
+
+
 const App = () => {
   
 
   const dispatch = useDispatch();
   const userLogin = useSelector((state) => state.userLogin);
-  const { userInfo } = userLogin;
+  const  { userInfo } = userLogin;
 
  
   useEffect(()=>{

@@ -17,7 +17,7 @@ const courseRoute = require("./routes/courseRoutes");
 const flashcardRoute = require("./routes/flashcardRoutes")
 const postsRoute = require("./routes/postsRoutes");
 const Comment = require("./models/commentModel");
-
+const connectDB = require("./config/db");
 dotenv.config();
 connectDB();
 const app = express();

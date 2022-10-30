@@ -19,7 +19,6 @@ import CommentItem from "./CommentItem";
 
 function CommentCard({ id }) {
   const globalState = useContext(DataContext);
-
   // socket
   const socket = globalState.socket;
   const [comments, setComments] = useState([]);
