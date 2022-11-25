@@ -1,0 +1,44 @@
+.top-right {
+    top: 12px;
+    right: 12px;
+    transition: transform .6s ease-in-out;
+    animation: toast-in-right .7s;
+}
+
+.bottom-right {
+    bottom: 12px;
+    right: 12px;
+    transition: transform .6s ease-in-out;
+    animation: toast-in-right .7s;
+}
+
+.top-left {
+    top: 12px;
+    left: 12px;
+    transition: transform .6s ease-in;
+    animation: toast-in-left .7s;
+}
+
+.bottom-left {
+    bottom: 12px;
+    left: 12px;
+    transition: transform .6s ease-in;
+    animation: toast-in-left .7s;
+}
+
+
+.success {
+  background-color: #5cb85c;
+}
+
+.danger {
+  background-color: #d9534f;
+}
+
+.info {
+  background-color: #5bc0de;
+}
+
+.warning {
+  background-color: #f0ad4e;
+}

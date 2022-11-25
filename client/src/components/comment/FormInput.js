@@ -5,7 +5,10 @@ import TokenService from "../../utils/tokenService";
 function FormInput({ id, socket, setReply, send, name }) {
   const nameRef = useRef(); //userName
   const contentRef = useRef();
-
+  useEffect(()=>{
+    console.log(id);   // commentid
+    console.log(commentId)  //testid
+  },[])
   useEffect(() => {
     if (name) {
       contentRef.current.innerHTML = `
@@ -24,16 +27,18 @@ function FormInput({ id, socket, setReply, send, name }) {
     const createdAt = new Date().toISOString();
     console.log(createdAt);
     socket.emit("createComment", {
-      testId: id,
+      testId: commentId,  //testid
       commentText: contentRef.current.innerHTML,
       username: TokenService.getuserInfo().name,
       createdAt,
       send,
+      str,commentId:id  // commentid
     });
 
     contentRef.current.innerHTML = "";
 
     if (setReply) setReply(false);
+ 
   };
 
   return (
