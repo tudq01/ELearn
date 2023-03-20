@@ -52,7 +52,10 @@ app.use(
 );  */
 app.use(
   cors({
-    origin: ["https://elearn-web.onrender.com","http://localhost:3000"],
+    origin: [
+      "https://elearn-web.onrender.com",
+      "http://localhost:3000",
+    ],
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
@@ -73,7 +76,7 @@ app.use("/api/comments", commentRoute);
 app.use("/api/courses", courseRoute);
 
 const http = require("http").createServer(app);
-const io = require("socket.io")(http);
+const io = require("socket.io")(http,{cors: {origin: "*"}});
 
 // Soketio
 let users = [];
