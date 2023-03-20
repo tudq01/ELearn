@@ -27,18 +27,36 @@ if (process.env.NODE_ENV === "development") {
 }
 
 app.use(cookieParser());
-
+app.use(function (req, res, next) {
+  res.header("Content-Type", "application/json;charset=UTF-8");
+  res.header("Access-Control-Allow-Credentials", true);
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 app.use(
   cookieSession({ name: "session", keys: ["lama"], maxAge: 24 * 60 * 60 * 100 })
 );
 
 app.use(passport.initialize());
 app.use(passport.session());
-const corsOptions = {
-  methods: ["GET", "PUT", "POST", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization", "Set-Cookie"],
-};
-app.use(cors(corsOptions));
+/*
+app.use(
+  cors({
+    origin: "*",
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+  })
+);  */
+app.use(
+  cors({
+    origin: ["https://elearn-web.onrender.com","http://localhost:3000"],
+    methods: "GET,POST,PUT,DELETE",
+    credentials: true,
+  })
+);
 
 app.use(express.json());
 app.use("/auth", authRoute);
