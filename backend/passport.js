@@ -1,13 +1,12 @@
-
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const GithubStrategy = require("passport-github2").Strategy;
 const FacebookStrategy = require("passport-facebook").Strategy;
 const passport = require("passport");
-const refresh = require('./controllers/refreshController')
-
-const Refresh = require("./models/refreshTokenModel")
+const refresh = require("./controllers/refreshController");
+const User = require("./models/userModel");
+const Refresh = require("./models/refreshTokenModel");
 const GOOGLE_CLIENT_ID =
-  "1085038059617-hdhu0vpbgg8pl2knb524mj9a91j0ssm3.apps.googleusercontent.com";  
+  "1085038059617-hdhu0vpbgg8pl2knb524mj9a91j0ssm3.apps.googleusercontent.com";
 const GOOGLE_CLIENT_SECRET = "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";
 
 GITHUB_CLIENT_ID = "your id";
@@ -25,27 +24,24 @@ passport.use(
     },
     //accessToken of google api
     async (accessToken, refreshToken, profile, done) => {
-    
       const existingUser = await User.findOne({ googleId: profile.id });
-    
+
       if (existingUser) {
-      
-      
-         let token = refresh.createToken(existingUser)
-        
-  
+        let token = refresh.createToken(existingUser);
+
         return done(null, existingUser);
       }
-    
+
       const user = await new User({
         googleId: profile.id,
         email: profile.emails[0].value,
-        name: profile.name.familyName + ' ' + profile.name.givenName
-       ,photo: profile.photos[0].value,
+        name: profile.name.familyName + " " + profile.name.givenName,
+        photo: profile.photos[0].value,
       }).save();
       let refreshT = await refresh.createToken(user);
       done(null, user);
-    })
+    }
+  )
 );
 /*
 
@@ -82,4 +78,3 @@ passport.serializeUser((user, done) => {
 passport.deserializeUser((user, done) => {
   done(null, user);
 });
-
