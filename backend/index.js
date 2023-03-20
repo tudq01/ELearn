@@ -52,7 +52,7 @@ app.use(
 );  */
 app.use(
   cors({
-    origin: ["https://elearn-web.onrender.com","http://localhost:3000"],
+    origin: "*",
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
