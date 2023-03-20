@@ -9,7 +9,7 @@ export const DataProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const socket = io();
+    const socket = io("https://elearn-pz8y.onrender.com");
     setSocket(socket);
     return () => socket.close();
   }, []);
