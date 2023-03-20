@@ -44,13 +44,7 @@ const App = () => {
   useEffect(() => {
     const getUser = () => {
       fetch("https://elearn-pz8y.onrender.com/auth/login/success", {
-        method: "GET",
-        credentials: "include",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Credentials": true,
-        },
+        method: "GET", 
       })
         .then((response) => {
           if (response.status === 200) return response.json();
