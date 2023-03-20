@@ -16,7 +16,7 @@ function Test() {
 
   const handleTest = async () => {
     const { data } = await axios.get(
-      "http://localhost:5000/api/questions/".concat(state._id)
+      "https://elearn-pz8y.onrender.com/api/questions/".concat(state._id)
     );
     state.questions = data.answer;
     state.parts = data.array;

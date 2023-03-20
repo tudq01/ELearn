@@ -43,7 +43,7 @@ const App = () => {
   },[dispatch])
   useEffect(() => {
     const getUser = () => {
-      fetch("http://localhost:5000/auth/login/success", {
+      fetch("https://elearn-pz8y.onrender.com/auth/login/success", {
         method: "GET",
         credentials: "include",
         headers: {

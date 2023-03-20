@@ -18,10 +18,10 @@ export const login = (email, password) => async (dispatch) => {
         }
 
         const { data } = await axios.post(
-            `http://localhost:5000/api/users/login`,
-            { email, password },
-            config,
-        )
+          `https://elearn-pz8y.onrender.com/api/users/login`,
+          { email, password },
+          config
+        );
     
         dispatch({
             type: types.USER_LOGIN_SUCCESS,
@@ -67,10 +67,10 @@ export const register = (name, email, password) => async (dispatch) => {
         }
 
         const { data } = await axios.post(
-            `http://localhost:5000/api/users`,
-            { name, email, password },
-            config
-        )
+          `https://elearn-pz8y.onrender.com/api/users`,
+          { name, email, password },
+          config
+        );
 
         dispatch({
             type: types.USER_REGISTER_SUCCESS,

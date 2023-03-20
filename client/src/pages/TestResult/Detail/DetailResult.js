@@ -11,7 +11,7 @@ function DetailResult() {
   useEffect(() => {
     setLoading(true);
      axios
-       .get(`http://localhost:5000/api/results/answer/details/${resultId}`
+       .get(`https://elearn-pz8y.onrender.com/api/results/answer/details/${resultId}`
     
        )
        .then(

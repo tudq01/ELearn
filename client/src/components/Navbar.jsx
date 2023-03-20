@@ -13,7 +13,7 @@ const Navbar = ({user}) => {
 
 
   const logoutHandler = () => {
- window.open("http://localhost:5000/auth/logout", "_self");
+ window.open("https://elearn-pz8y.onrender.com/auth/logout", "_self");
  dispatch(logout());
   };
 
@@ -116,7 +116,7 @@ export default Navbar;
 
 
                     const logout = () => {
-    window.open("http://localhost:5000/auth/logout", "_self");
+    window.open("https://elearn-pz8y.onrender.com/auth/logout", "_self");
   };
      
 

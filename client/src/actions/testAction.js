@@ -85,7 +85,7 @@ export const listTests =  () =>async (dispatch)=>{
             },
         }
 
-        const { data } = await axios.get('http://localhost:5000/api/test/toeic',config);
+        const { data } = await axios.get('https://elearn-pz8y.onrender.com/api/test/toeic',config);
       
 
         dispatch({
@@ -116,7 +116,7 @@ export const listIELTSTests = () => async (dispatch) => {
             },
         }
         
-        const { data } = await axios.get('http://localhost:5000/api/test/ielts',config);
+        const { data } = await axios.get('https://elearn-pz8y.onrender.com/api/test/ielts',config);
 
         dispatch({
             type: types.TEST_SUCCESS,

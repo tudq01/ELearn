@@ -24,26 +24,26 @@ exports.authUser = asyncHandler(async (req, res) => {
     let refreshToken = await refresh.createToken(user);
     const accessToken = generateToken(user._id);
 
-    res.status(200).cookie('accessToken', accessToken, {
-        domain:'localhost:3000',
-        sameSite: 'none',
+    res
+      .status(200)
+      .cookie("accessToken", accessToken, {
+        domain: "https://elearn-web.onrender.com",
+        sameSite: "none",
         httpOnly: true,
-     
-    })
-    .cookie('refreshToken', refreshToken, {
-        domain: 'localhost:3000',
-            sameSite: 'none',
-            httpOnly: true,
-           
-        })
-    .json({
+      })
+      .cookie("refreshToken", refreshToken, {
+        domain: "https://elearn-web.onrender.com",
+        sameSite: "none",
+        httpOnly: true,
+      })
+      .json({
         _id: user._id,
         name: user.name,
         email: user.email,
         token: accessToken,
         refreshToken: refreshToken,
-        photo:user.photo
-    });
+        photo: user.photo,
+      });
 
     
 });

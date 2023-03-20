@@ -10,7 +10,7 @@ function Course() {
   useEffect(() => {
     setLoading(true);
     axios
-      .get(`http://localhost:5000/api/courses`)
+      .get(`https://elearn-pz8y.onrender.com/api/courses`)
       .then(
         (response) => {
           console.log(response);

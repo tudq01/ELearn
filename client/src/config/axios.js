@@ -48,7 +48,7 @@ instance.interceptors.response.use(
             if (err.response.status === 403 && err.response.data) {
                 //login again
                 window.alert("Your session time out.Please login again !")
-                window.open("http://localhost:5000/auth/logout", "_self");
+                window.open("https://elearn-pz8y.onrender.com/auth/logout", "_self");
                 TokenService.removeuserInfo();
                 document.location.replace("/login")
                 return Promise.reject(err.response.data);

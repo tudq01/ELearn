@@ -27,7 +27,7 @@ function RegisterButton(props){
     const registerHandler = (e) => {
         e.preventDefault();
         axios
-            .post(`http://localhost:5000/api/courses/enroll/${courseId}`, { "userId": userId })
+            .post(`https://elearn-pz8y.onrender.com/api/courses/enroll/${courseId}`, { "userId": userId })
             .catch((error) => { setMessage("There was an error registering this course. Please try again"); return; })
         setMessage("Course registered successfully");
         e.target.style.display = "none";
@@ -61,7 +61,7 @@ function CourseDetails() {
     useEffect(() => {
         setLoading(true);
         axios
-            .get(`http://localhost:5000/api/courses/${courseId}`)
+            .get(`https://elearn-pz8y.onrender.com/api/courses/${courseId}`)
             .then(
                 (response) => {
                     console.log(response);

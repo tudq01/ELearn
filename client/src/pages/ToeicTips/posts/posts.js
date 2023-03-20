@@ -13,7 +13,7 @@ export default function Posts() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/posts`)
+      .get(`https://elearn-pz8y.onrender.com/api/posts`)
       .then(
         (response) => {
           console.log(response);
