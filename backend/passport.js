@@ -3,7 +3,6 @@ const GithubStrategy = require("passport-github2").Strategy;
 const FacebookStrategy = require("passport-facebook").Strategy;
 const passport = require("passport");
 const refresh = require("./controllers/refreshController");
-const User = require("./models/userModel");
 const Refresh = require("./models/refreshTokenModel");
 const GOOGLE_CLIENT_ID =
   "1085038059617-hdhu0vpbgg8pl2knb524mj9a91j0ssm3.apps.googleusercontent.com";
