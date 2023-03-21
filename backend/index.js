@@ -76,7 +76,7 @@ app.use("/api/comments", commentRoute);
 app.use("/api/courses", courseRoute);
 
 const http = require("http").createServer(app);
-const io = require("socket.io")(http,{cors: {origin: "*"}});
+const io = require("socket.io")(http);
 
 // Soketio
 let users = [];
